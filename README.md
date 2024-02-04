@@ -1,7 +1,8 @@
 
-# ParkUp
+# Dirac
 
-App para Gestion de Estacionamientos
+App para Gestion de Centros Educativos 
+(DIReccion ACademica)
 
 <img src="https://i.ibb.co/RBd4Q0f/image.png" width=30% height=30%>  |  <img src="https://i.ibb.co/vjPms0P/image.png" width=30% height=30%> | <img src="https://i.ibb.co/pyVTmGn/image.png" width=30% height=30%>
 
