@@ -2,7 +2,7 @@
 
 Date : 2023-01-15 21:00:07
 
-Directory c:\\repos\\LinkinPark
+Directory c:\\repos\\dirac
 
 Total : 244 files,  33665 codes, 734 comments, 2447 blanks, all 36846 lines
 

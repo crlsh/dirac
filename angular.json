@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "linkinpark": {
+    "dirac": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/linkinpark",
+            "outputPath": "dist/dirac",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -98,13 +98,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "linkinpark:build:production"
+              "browserTarget": "dirac:build:production"
             },
             "production2": {
-              "browserTarget": "linkinpark:build:production2"
+              "browserTarget": "dirac:build:production2"
             },
             "development": {
-              "browserTarget": "linkinpark:build:development"
+              "browserTarget": "dirac:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "linkinpark:build"
+            "browserTarget": "dirac:build"
           }
         },
         "test": {

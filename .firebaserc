@@ -1,8 +1,6 @@
 {
   "projects": {
-    "dev": "dummy-park",
-    "prod": "pfparkapp",
-    "rivera": "rivera-cba"
+    "default": "dirac-f4df2"
   },
   "targets": {},
   "etags": {}
