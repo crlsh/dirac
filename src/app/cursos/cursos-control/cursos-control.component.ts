@@ -3,23 +3,22 @@ import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
 import { EstadoCajaService } from 'src/app/servicios/caja/estado-caja.service';
 import { StorageService } from 'src/app/servicios/storage/storage.service';
-import { AlumnosFormComponent } from '../alumnos-form/alumnos-form.component';
+import { CursosFormComponent } from '../cursos-form/cursos-form.component';
+
 
 @Component({
-  selector: 'app-alumnos-control',
+  selector: 'app-cursos-control',
   template: `
-  <app-alumnos-view
-    [data]="data$"
-
+  <app-cursos-view
     (newItemEvent)="getMsg($event)"
-  ></app-alumnos-view>
+  ></app-cursos-view>
 `,
-styleUrls: ['./alumnos-control.component.scss'],
+
+  styleUrls: ['./cursos-control.component.scss']
 })
+export class CursosControlComponent implements OnInit {
 
-export class AlumnosControlComponent implements OnInit {
-
-  componente: string = 'alumnos';
+  componente: string = 'cursos';
   data$!: any;
   $modoCaja: any;
 
@@ -31,7 +30,7 @@ export class AlumnosControlComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.data$ = this.storage.alumnos$;
+    this.data$ = this.storage.cursos$;
 
   }
 
@@ -42,7 +41,7 @@ export class AlumnosControlComponent implements OnInit {
 
   openForm(modo: string, item: any) {
     {
-      const modalRef = this.modalService.open(AlumnosFormComponent, {
+      const modalRef = this.modalService.open(CursosFormComponent, {
         windowClass: 'myCustomModalClass',
       /*   centered: true,
         size: 'lg', */

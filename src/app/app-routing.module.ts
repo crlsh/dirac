@@ -24,6 +24,8 @@ import { TarifasControlComponent } from './tarifas/tarifas-control/tarifas-contr
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ListadoVehiculosComponent } from './vehiculos/listado-vehiculos/listado-vehiculos.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { ProfesoresControlComponent } from './profesores/profesores-control/profesores-control.component';
+import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
 
 // const routes: Routes = [];
 
@@ -74,6 +76,20 @@ const appRoutes: Routes = [
         component: AlumnosControlComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
+
+      {
+        path: 'profesores',
+        component: ProfesoresControlComponent ,
+        ...canActivate(redirectUnauthorizedToLogin),
+      },
+
+      {
+        path: 'cursos',
+        component: CursosControlComponent ,
+        ...canActivate(redirectUnauthorizedToLogin),
+      },
+
+
       {
         path: 'ocupacion',
         component: OcupacionComponent,

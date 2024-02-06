@@ -101,6 +101,12 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { AlumnosControlComponent } from './alumnos/alumnos-control/alumnos-control.component';
 import { AlumnosFormComponent } from './alumnos/alumnos-form/alumnos-form.component';
 import { AlumnosViewComponent } from './alumnos/alumnos-view/alumnos-view.component';
+import { ProfesoresControlComponent } from './profesores/profesores-control/profesores-control.component';
+import { ProfesoresFormComponent } from './profesores/profesores-form/profesores-form.component';
+import { ProfesoresViewComponent } from './profesores/profesores-view/profesores-view.component';
+import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
+import { CursosFormComponent } from './cursos/cursos-form/cursos-form.component';
+import { CursosViewComponent } from './cursos/cursos-view/cursos-view.component';
 
 
 
@@ -178,6 +184,12 @@ import { AlumnosViewComponent } from './alumnos/alumnos-view/alumnos-view.compon
       AlumnosControlComponent,
       AlumnosFormComponent,
       AlumnosViewComponent,
+      ProfesoresControlComponent,
+      ProfesoresFormComponent,
+      ProfesoresViewComponent,
+      CursosControlComponent,
+      CursosFormComponent,
+      CursosViewComponent,
   ],
   imports: [
     BrowserModule,
