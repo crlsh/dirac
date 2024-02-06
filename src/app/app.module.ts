@@ -98,6 +98,10 @@ import { BtnIngresoComponent } from './shared/botones/btn-ingreso/btn-ingreso.co
 import { BtnEgresoComponent } from './shared/botones/btn-egreso/btn-egreso.component';
 import { ContactoComponent } from './contacto/contacto.component';
 
+import { AlumnosControlComponent } from './alumnos/alumnos-control/alumnos-control.component';
+import { AlumnosFormComponent } from './alumnos/alumnos-form/alumnos-form.component';
+import { AlumnosViewComponent } from './alumnos/alumnos-view/alumnos-view.component';
+
 
 
 @NgModule({
@@ -170,6 +174,10 @@ import { ContactoComponent } from './contacto/contacto.component';
       BtnIngresoComponent,
       BtnEgresoComponent,
       ContactoComponent,
+
+      AlumnosControlComponent,
+      AlumnosFormComponent,
+      AlumnosViewComponent,
   ],
   imports: [
     BrowserModule,

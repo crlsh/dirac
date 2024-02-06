@@ -8,6 +8,8 @@ import { VerifyEmailComponent } from './appLogin/verify-email/verify-email.compo
 import { CajaControlComponent } from './caja/caja-control/caja-control.component';
 import { CajaLogComponent } from './caja/caja-log/caja-log.component';
 import { ClientesControlComponent } from './clientes/clientes-control/clientes-control.component';
+import { AlumnosControlComponent } from './alumnos/alumnos-control/alumnos-control.component';
+
 import { FacturacionControlComponent } from './facturacion/facturacion-control/facturacion-control.component';
 import { IsSuperAdminGuard } from './guards/is-super-admin.guard';
 import { HomeComponent } from './home/home.component';
@@ -65,6 +67,11 @@ const appRoutes: Routes = [
       {
         path: 'clientes',
         component: ClientesControlComponent,
+        ...canActivate(redirectUnauthorizedToLogin),
+      },
+      {
+        path: 'alumnos',
+        component: AlumnosControlComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
       {

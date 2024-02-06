@@ -32,6 +32,9 @@ export class StorageService {
   private _clientes$ = new BehaviorSubject<any>(null); //aca va interface my data
   public clientes$ = this._clientes$.asObservable();
 
+  private _alumnos$ = new BehaviorSubject<any>(null); //aca va interface my data
+  public alumnos$ = this._alumnos$.asObservable();
+
   private _cajaLog$ = new BehaviorSubject<any>(null); //aca va interface my data
   public cajaLog$ = this._cajaLog$.asObservable();
 
@@ -64,6 +67,11 @@ export class StorageService {
 
       case 'clientes': {
         this._clientes$.next(data);
+        break;
+      }
+
+      case 'alumnos': {
+        this._alumnos$.next(data);
         break;
       }
 
@@ -132,6 +140,7 @@ export class StorageService {
     this.getAllSorted('playa', 'fechas.fechaDate', 'asc');
     this.getAllSorted('tarifas', 'categoria', 'asc');
     this.getAllSorted('clientes', 'apellido', 'asc');
+    this.getAllSorted('alumnos', 'apellido', 'asc');
     this.getNLatestOperations('cajaLog', 'apertura', 'asc',10);
     this.getAllSortedToday('facturacion', 'fechaOp', 'asc');
     this.getNLatestOperations('logger', 'Fecha', 'asc', 10);

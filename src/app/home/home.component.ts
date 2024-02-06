@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   title = 'dirac';
 
+  alumnos:any;
   clientes!: any;
   vehiculos!: any;
   tarifas!: any;
