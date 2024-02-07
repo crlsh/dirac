@@ -193,6 +193,7 @@ import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
       CursosFormComponent,
       CursosViewComponent,
       CalendarComponent,
+
   ],
   imports: [
     DayPilotModule,
