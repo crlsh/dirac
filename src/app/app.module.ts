@@ -107,6 +107,8 @@ import { ProfesoresViewComponent } from './profesores/profesores-view/profesores
 import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
 import { CursosFormComponent } from './cursos/cursos-form/cursos-form.component';
 import { CursosViewComponent } from './cursos/cursos-view/cursos-view.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 
 
 
@@ -190,8 +192,10 @@ import { CursosViewComponent } from './cursos/cursos-view/cursos-view.component'
       CursosControlComponent,
       CursosFormComponent,
       CursosViewComponent,
+      CalendarComponent,
   ],
   imports: [
+    DayPilotModule,
     BrowserModule,
     FormsModule,
     NgxPrintElementModule,
