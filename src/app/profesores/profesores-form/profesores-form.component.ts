@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Clientes } from 'src/app/interfaces/clientes';
+import { Profesores } from 'src/app/interfaces/profesores';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,7 @@ export class ProfesoresFormComponent implements OnInit {
   @Input() fromParent: any;
   editForm!: any;
   titulo!: string;
-  item: Clientes;
+  item: Profesores;
   soloVista: boolean = false;
 
   constructor(
