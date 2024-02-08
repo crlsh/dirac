@@ -1,76 +1,83 @@
-
 <!-- <H1 class="display-1" style="text-align: center;">Clientes </H1> -->
 
-<calendar-component></calendar-component>
+<!-- export interface Cursos {
+  id: string;
+  nombre: string;
+  inicio: string;
+  fin: string;
+  profesor: string;
+  costo: string ;
+} -->
 
-  <div class="container">
-    <div style="float: right" class="pantallasPequenias2" >
-      <app-btn-ingreso
-        class="right"
-        (click)="msgBack('Agregar', [])"
-        class="d-flex align-items-center"
-      >
-      </app-btn-ingreso>
-    </div>
-    <div class="mt-5">
-      <table datatable [dtOptions]="dtOptions" class="display table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th class="pantallasPequenias2">telefono</th>
-            <th class="pantallasPequenias">Direccion</th>
-            <th class="pantallasPequenias2">email</th>
-            <th class="pantallasPequenias">Comentario</th>
-            <th id="colBtn"></th>
+
+
+<div class="container">
+  <div style="float: right" class="pantallasPequenias2">
+    <app-btn-ingreso
+      class="right"
+      (click)="msgBack('Agregar', [])"
+      class="d-flex align-items-center"
+    >
+    </app-btn-ingreso>
+  </div>
+  <div class="mt-5">
+    <table datatable [dtOptions]="dtOptions" class="display table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th>Nombre</th>
+          <th>Inicio</th>
+          <th class="pantallasPequenias2">Fin</th>
+          <th class="pantallasPequenias">Profesor</th>
+          <th class="pantallasPequenias2">Costo</th>
+          <th id="colBtn"></th>
           <!--   <th></th>
             <th ></th> -->
-          </tr>
-        </thead>
-  
-        <tbody>
-          <tr *ngFor="let item of data | async; let i = index">
-            <td class="badge text-center align-middlee" scope="row">{{ i + 1 }}</td>
-            <td class="align-middle">{{ item.apellido }}</td>
-            <td class="align-middle">{{ item.nombre }}</td>
-            <td class="align-middle pantallasPequenias2">{{ item.telefono }}</td>
-            <td class="align-middle pantallasPequenias">{{ item.direccion }}</td>
-            <td class="align-middle pantallasPequenias2" id="correo">{{ item.email }}</td>
-            <td class="align-middle pantallasPequenias" id="comentario">{{ item.comentario }}</td>
-            <td class="align-middle botones">
-              <app-btn-editar 
-                class="right"
-                (click)="msgBack('Editar', item)"
-                class="d-flex align-items-center"
-              >
-              </app-btn-editar>
-  
-              <app-btn-agregar
-                class="right"
-                (click)="msgBack('Vehiculo', item)"
-                [name]="vehiculo"
-              >
-              </app-btn-agregar>
-  
-              <app-btn-eliminar
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data | async; let i = index">
+          <td class="badge text-center align-middlee" scope="row">
+            {{ i + 1 }}
+          </td>
+          <td class="align-middle">{{ item.nombre }}</td>
+          <td class="align-middle">{{ item.inicio }}</td>
+          <td class="align-middle pantallasPequenias2">{{ item.fin }}</td>
+          <td class="align-middle pantallasPequenias">{{ item.profesor }}</td>
+          <td class="align-middle pantallasPequenias2" id="costo">
+            {{ item.costo }}
+          </td>
+ 
+          <td class="align-middle botones">
+            <app-btn-editar
+              class="right"
+              (click)="msgBack('Editar', item)"
+              class="d-flex align-items-center"
+            >
+            </app-btn-editar>
+
+            <app-btn-agregar
+              class="right"
+              (click)="msgBack('Vehiculo', item)"
+              [name]="vehiculo"
+            >
+            </app-btn-agregar>
+
+            <app-btn-eliminar
               class="right"
               (click)="msgBack('Eliminar', item)"
               class="d-flex align-items-center"
-              >
-              </app-btn-eliminar>
-              
-              <app-btn-show 
-                class="align-middle"
-                (click)="msgBack('Mostrar', item)"
-                >
-  
-              </app-btn-show>
-  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            >
+            </app-btn-eliminar>
+
+            <app-btn-show
+              class="align-middle"
+              (click)="msgBack('Mostrar', item)"
+            >
+            </app-btn-show>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>

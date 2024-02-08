@@ -26,6 +26,7 @@ import { ListadoVehiculosComponent } from './vehiculos/listado-vehiculos/listado
 import { ContactoComponent } from './contacto/contacto.component';
 import { ProfesoresControlComponent } from './profesores/profesores-control/profesores-control.component';
 import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 // const routes: Routes = [];
 
@@ -41,9 +42,14 @@ const appRoutes: Routes = [
     component: HomeComponent,
     ...canActivate(redirectUnauthorizedToLogin),
     children: [
+      // {
+      //   path: '',
+      //   redirectTo: 'playa',
+      //   pathMatch: 'full',
+      // },
       {
         path: '',
-        redirectTo: 'playa',
+        redirectTo: 'calendario',
         pathMatch: 'full',
       },
       {
@@ -56,9 +62,15 @@ const appRoutes: Routes = [
         component: FacturacionControlComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
+      // {
+      //   path: 'caja',
+      //   component: CajaControlComponent,
+      //   ...canActivate(redirectUnauthorizedToLogin),
+      // },
+
       {
-        path: 'caja',
-        component: CajaControlComponent,
+        path: 'calendario',
+        component: CalendarComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
       {

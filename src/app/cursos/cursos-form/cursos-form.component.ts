@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Clientes } from 'src/app/interfaces/clientes';
+import { Cursos } from 'src/app/interfaces/cursos';
 import Swal from 'sweetalert2';
 
 
@@ -15,7 +15,7 @@ export class CursosFormComponent implements OnInit {
   @Input() fromParent: any;
   editForm!: any;
   titulo!: string;
-  item: Clientes;
+  item: Cursos;
   soloVista: boolean = false;
 
   constructor(
@@ -58,26 +58,25 @@ export class CursosFormComponent implements OnInit {
   configureForm(_titulo: string, item: any) {
     // console.log("configure form", titulo, item), (titulo !=='agregar');
     this.editForm.patchValue({
-      apellido: item.apellido,
+
       nombre: item.nombre,
-      telefono: item.telefono,
-      direccion: item.direccion,
-      comentario: item.comentario,
-      email: item.email,
+      inicio: item.inicio,
+      fin: item.fin,
+      profesor: item.profesor,
+      costo: item.costo,
       id: item.id,
     });
   }
 
   createForm() {
-    this.editForm = this.fb.group({
-      apellido: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      telefono: ['', Validators.pattern(/^[0-9]{5,10}$/)],
-      direccion: [''],
-      comentario: [''],
-      email: ['', [Validators.required, Validators.email]],
-      id: [''],
-    });
+      this.editForm = this.fb.group({
+        nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+        inicio: [''],
+        fin: [''],
+        profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+      costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
+        id: [''],
+      });
   }
 
   closeModal() {
@@ -99,20 +98,24 @@ export class CursosFormComponent implements OnInit {
  this.activeModal.close(value); */
   }
 
-  get Email() {
-    return this.editForm.get('email');
-  }
-
-  get Telefono() {
-    return this.editForm.get('telefono');
-  }
-
   get Nombre() {
     return this.editForm.get('nombre');
   }
 
-  get Apellido() {
-    return this.editForm.get('apellido');
+  get Inicio() {
+    return this.editForm.get('inicio');
+  }
+
+  get Fin() {
+    return this.editForm.get('fin');
+  }
+
+  get Profesor() {
+    return this.editForm.get('profesor');
+  }
+
+  get Costo() {
+    return this.editForm.get('costo');
   }
 
   getMsg(msg: any) {

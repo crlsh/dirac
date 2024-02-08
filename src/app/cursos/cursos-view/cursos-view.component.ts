@@ -16,7 +16,7 @@ export class CursosViewComponent implements OnInit {
 
   @Input() data?: any 
   @Output() newItemEvent = new EventEmitter<any>();
-  titulo: string = 'clientes';
+  titulo: string = 'cursos';
   vehiculo: string = 'Vehiculo';
   dtOptions: DataTables.Settings = {};
   msg: any
@@ -66,8 +66,8 @@ setDataTableOptions(){
     dom: 't<"bottom"riflp><"clear">',
     language: LanguageApp.spanish_datatables,
     columnDefs: [
-      { orderable: false, targets: [7] },
-      { searchable: false, targets: [7] },
+      { orderable: false, targets: [5] },
+      { searchable: false, targets: [5] },
       /* { width: '3rem', targets: 0}, */
   ]
   };

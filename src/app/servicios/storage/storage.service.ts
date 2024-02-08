@@ -153,15 +153,15 @@ export class StorageService {
 
   initializer() {
     this.getAll('empresa');
-    this.getAllSorted('playa', 'fechas.fechaDate', 'asc');
-    this.getAllSorted('tarifas', 'categoria', 'asc');
-    this.getAllSorted('clientes', 'apellido', 'asc');
+    // this.getAllSorted('playa', 'fechas.fechaDate', 'asc');
+    // this.getAllSorted('tarifas', 'categoria', 'asc');
+    // this.getAllSorted('clientes', 'apellido', 'asc');
     this.getAllSorted('alumnos', 'apellido', 'asc');
     this.getAllSorted('profesores', 'apellido', 'asc');
-    this.getAllSorted('cursos', 'apellido', 'asc');
-    this.getNLatestOperations('cajaLog', 'apertura', 'asc',10);
-    this.getAllSortedToday('facturacion', 'fechaOp', 'asc');
-    this.getNLatestOperations('logger', 'Fecha', 'asc', 10);
+    this.getAllSorted('cursos', 'nombre', 'asc');
+    // this.getNLatestOperations('cajaLog', 'apertura', 'asc',10);
+    // this.getAllSortedToday('facturacion', 'fechaOp', 'asc');
+    // this.getNLatestOperations('logger', 'Fecha', 'asc', 10);
     this.getUsuarios();
     // this.getCaja();
     this.getVehiculos();
@@ -198,7 +198,7 @@ export class StorageService {
       .subscribe((data) => {
         this.setInfo(componente, data);
         // this.updateObservable(componente, data)
-        // console.log('storage initializer ', componente, data);
+        console.log('storage initializer ', componente, data);
       });
   }
 

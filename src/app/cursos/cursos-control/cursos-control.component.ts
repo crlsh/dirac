@@ -10,6 +10,7 @@ import { CursosFormComponent } from '../cursos-form/cursos-form.component';
   selector: 'app-cursos-control',
   template: `
   <app-cursos-view
+    [data]="data$"
     (newItemEvent)="getMsg($event)"
   ></app-cursos-view>
 `,
@@ -20,7 +21,7 @@ export class CursosControlComponent implements OnInit {
 
   componente: string = 'cursos';
   data$!: any;
-  $modoCaja: any;
+  // $modoCaja: any;
 
   constructor(
     private modalService: NgbModal,
@@ -31,6 +32,7 @@ export class CursosControlComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = this.storage.cursos$;
+    console.log("cursos component" ,this.data$)
 
   }
 
