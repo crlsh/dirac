@@ -20,6 +20,24 @@ import { Component, Input, OnInit } from '@angular/core';
         style=" vertical-align: middle;"
       ></i>
 
+      <i
+        *ngIf="name === 'Profesor'"
+        class="fa fa-graduation-cap "
+        style=" vertical-align: middle;"
+      ></i>
+
+      <i
+        *ngIf="name === 'Alumno'"
+        class="fa fa-user"
+        style=" vertical-align: middle;"
+      ></i>
+   
+      <i
+        *ngIf="name === 'Cursos'"
+        class="fa fa-chalkboard"
+        style=" vertical-align: middle;"
+      ></i>
+
       {{ name || 'Agregar' }}
     </button>
   `,

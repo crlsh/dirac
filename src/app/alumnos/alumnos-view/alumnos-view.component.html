@@ -39,6 +39,14 @@
             <td class="align-middle pantallasPequenias2" id="correo">{{ item.email }}</td>
             <td class="align-middle pantallasPequenias" id="comentario">{{ item.comentario }}</td>
             <td class="align-middle botones">
+
+              <app-btn-agregar
+              class="right"
+              (click)="msgBack('Cursos', item)"
+              [name]="cursos"
+            >
+            </app-btn-agregar>
+
               <app-btn-editar 
                 class="right"
                 (click)="msgBack('Editar', item)"
@@ -46,12 +54,12 @@
               >
               </app-btn-editar>
   
-              <app-btn-agregar
+              <!-- <app-btn-agregar
                 class="right"
                 (click)="msgBack('Vehiculo', item)"
                 [name]="vehiculo"
               >
-              </app-btn-agregar>
+              </app-btn-agregar> -->
   
               <app-btn-eliminar
               class="right"

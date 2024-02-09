@@ -9,8 +9,6 @@
   costo: string ;
 } -->
 
-
-
 <div class="container">
   <div style="float: right" class="pantallasPequenias2">
     <app-btn-ingreso
@@ -47,21 +45,30 @@
           <td class="align-middle pantallasPequenias2" id="costo">
             {{ item.costo }}
           </td>
+
  
+
           <td class="align-middle botones">
+
+            <app-btn-agregar
+            class="right"
+            (click)="msgBack('Profesores', item)"
+            [name]="profesor"
+          >
+          </app-btn-agregar>
+
+          <app-btn-agregar
+            class="right"
+            (click)="msgBack('Alumnos', item)"
+            [name]="alumnos"
+          >
+          </app-btn-agregar>
             <app-btn-editar
               class="right"
               (click)="msgBack('Editar', item)"
               class="d-flex align-items-center"
             >
             </app-btn-editar>
-
-            <app-btn-agregar
-              class="right"
-              (click)="msgBack('Vehiculo', item)"
-              [name]="vehiculo"
-            >
-            </app-btn-agregar>
 
             <app-btn-eliminar
               class="right"

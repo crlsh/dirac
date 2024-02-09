@@ -16,6 +16,7 @@ export class AlumnosViewComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<any>();
   titulo: string = 'alumnos';
   vehiculo: string = 'Vehiculo';
+  cursos: string = 'Cursos';
   dtOptions: DataTables.Settings = {};
   msg: any
   

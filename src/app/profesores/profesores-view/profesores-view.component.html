@@ -8,8 +8,6 @@
       class="d-flex align-items-center"
     >
     </app-btn-ingreso>
-
-  
   </div>
   <div class="mt-5">
     <table datatable [dtOptions]="dtOptions" class="display table">
@@ -43,20 +41,38 @@
           <td class="align-middle pantallasPequenias" id="comentario">
             {{ item.comentario }}
           </td>
+
           <td class="align-middle botones">
+<!--             
+            <app-btn-agregar
+              class="right"
+              (click)="msgBack('Alumnos', item)"
+              [name]="alumnos"
+            >
+            </app-btn-agregar> -->
+
+            <!-- <app-btn-agregar
+              class="right"
+              (click)="msgBack('Vehiculo', item)"
+              [name]="vehiculo"
+            >
+            </app-btn-agregar> -->
+
+
+            <app-btn-agregar
+            class="right"
+            (click)="msgBack('Cursos', item)"
+            [name]="cursos"
+          >
+          </app-btn-agregar>
+
+          
             <app-btn-editar
               class="right"
               (click)="msgBack('Editar', item)"
               class="d-flex align-items-center"
             >
             </app-btn-editar>
-
-            <app-btn-agregar
-              class="right"
-              (click)="msgBack('Vehiculo', item)"
-              [name]="vehiculo"
-            >
-            </app-btn-agregar>
 
             <app-btn-eliminar
               class="right"
@@ -65,11 +81,13 @@
             >
             </app-btn-eliminar>
 
-            <app-btn-show
+            <!-- <app-btn-show
               class="align-middle"
               (click)="msgBack('Mostrar', item)"
             >
-            </app-btn-show>
+            </app-btn-show> -->
+
+
           </td>
         </tr>
       </tbody>

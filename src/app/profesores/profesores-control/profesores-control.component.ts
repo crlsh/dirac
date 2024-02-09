@@ -9,11 +9,11 @@ import { ProfesoresFormComponent } from '../profesores-form/profesores-form.comp
 @Component({
   selector: 'app-profesores-control',
   template: `
-  <app-alumnos-view
+  <app-profesores-view
     [data]="data$"
 
     (newItemEvent)="getMsg($event)"
-  ></app-alumnos-view>
+  ></app-profesores-view>
 `,
 
   styleUrls: ['./profesores-control.component.scss']
