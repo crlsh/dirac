@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
 import { EstadoCajaService } from 'src/app/servicios/caja/estado-caja.service';
@@ -8,6 +8,7 @@ import { AlumnosFormComponent } from '../alumnos-form/alumnos-form.component';
 @Component({
   selector: 'app-alumnos-control',
   template: `
+  <p>{{ mensaje }}</p>
   <app-alumnos-view
     [data]="data$"
 
@@ -22,6 +23,23 @@ export class AlumnosControlComponent implements OnInit {
   componente: string = 'alumnos';
   data$!: any;
   $modoCaja: any;
+
+
+  
+  @Input() mostrarVista: boolean = false;
+  mensaje: string = 'Mensaje predeterminado';
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Cambios en mostrarVista:', changes);
+    if (changes['mostrarVista']) {
+      this.actualizarMensaje(changes['mostrarVista'].currentValue);
+    }
+  }
+
+  private actualizarMensaje(valor: boolean): void {
+    this.mensaje = valor ? 'Mostrando vista' : 'No mostrando vista';
+  }
+
 
   constructor(
     private modalService: NgbModal,

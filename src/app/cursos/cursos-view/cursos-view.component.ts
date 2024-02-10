@@ -13,7 +13,7 @@ export class CursosViewComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<any>();
   titulo: string = 'cursos';
   profesor: string = 'Profesor';
-  alumnos:string = 'Alumno';
+  alumnos: string = 'Alumno';
   dtOptions: DataTables.Settings = {};
   msg: any;
 

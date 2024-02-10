@@ -46,23 +46,20 @@
             {{ item.costo }}
           </td>
 
- 
-
           <td class="align-middle botones">
+            <app-btn-agregar
+              class="right"
+              (click)="msgBack('Profesores', item)"
+              [name]="profesor"
+            >
+            </app-btn-agregar>
 
             <app-btn-agregar
-            class="right"
-            (click)="msgBack('Profesores', item)"
-            [name]="profesor"
-          >
-          </app-btn-agregar>
-
-          <app-btn-agregar
-            class="right"
-            (click)="msgBack('Alumnos', item)"
-            [name]="alumnos"
-          >
-          </app-btn-agregar>
+              class="right"
+              (click)="msgBack('Alumnos', item)"
+              [name]="alumnos"
+            >
+            </app-btn-agregar>
             <app-btn-editar
               class="right"
               (click)="msgBack('Editar', item)"

@@ -1,9 +1,6 @@
 
-<div *ngIf="titulo === 'Vehiculo'; else profesores">
-  <app-vehiculos-form
-    [item]="item"
-    (newItemEvent)="getMsg($event)"
-  ></app-vehiculos-form>
+<div *ngIf="titulo === 'Cursos'; else profesores">
+  <app-cursos-control [mostrarVista]="true"></app-cursos-control>
 </div>
 
 <ng-template #profesores>

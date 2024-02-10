@@ -1,13 +1,22 @@
-
-
-<div *ngIf="titulo === 'Vehiculo'; else cursos">
+<!-- <div *ngIf="titulo === 'Profesores'; else cursos">
   <app-vehiculos-form
     [item]="item"
     (newItemEvent)="getMsg($event)"
   ></app-vehiculos-form>
+</div> -->
+
+<div *ngIf="titulo === 'Profesores';">
+  <app-profesores-control [mostrarVista]="true"></app-profesores-control>
+
 </div>
 
-<ng-template #cursos>
+
+<div *ngIf="titulo === 'Alumnos'; ">
+  <app-alumnos-control [mostrarVista]="true"></app-alumnos-control>
+
+</div>
+
+<div *ngIf="titulo !== 'Profesores' && titulo !== 'Alumnos';">
   <div class="modal-header">
     <h1 class="modal-title" id="modal-basic-title" *ngIf="!soloVista">
       {{ titulo }} Curso
@@ -24,7 +33,6 @@
     <div class="container">
       <div class="modal-body">
         <form [formGroup]="editForm" novalidate>
-
           <div class="form-group">
             <label for="Nombre">Nombre</label>
             <div class="input-group">
@@ -172,7 +180,7 @@
       </div>
     </div>
   </div>
-</ng-template>
+</div>
 
 <!-- <select class="form-select form-select-md mb-3" (change)="changeTarifa($event)">
   <option value={{tarifaSeleccionada}}>Elegir Tarifa</option>

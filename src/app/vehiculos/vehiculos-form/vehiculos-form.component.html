@@ -22,28 +22,29 @@
   </div> -->
 
   <div class="d-flex justify-content-between">
-      <div style="margin-top: 10px;" class="w-75 ms-2">
-        <h5
-          *ngIf="
-            ($modoCaja | async) === 'cerrada' || ($modoCaja | async) === 'admin'
-          "
-          style="color: red; font-size: 160%"
-        >
-          Caja {{ ($modoCaja | async) === "cerrada" ? "Cerrada" : "Abierta" }}.<br> No
-          se puede cobrar abonos.<br>
-          {{
-            ($modoCaja | async) === "cerrada"
-              ? "Abrir Caja o consultar con un Administrador."
-              : "Debe cerrar y volver a abrir sesión para operar."
-          }}
-        </h5>
-      </div>
-      <div class="pantallasGrandes">
-        <app-btn-agregar 
+    <div style="margin-top: 10px" class="w-75 ms-2">
+      <h5
+        *ngIf="
+          ($modoCaja | async) === 'cerrada' || ($modoCaja | async) === 'admin'
+        "
+        style="color: red; font-size: 160%"
+      >
+        Caja
+        {{ ($modoCaja | async) === "cerrada" ? "Cerrada" : "Abierta" }}.<br />
+        No se puede cobrar abonos.<br />
+        {{
+          ($modoCaja | async) === "cerrada"
+            ? "Abrir Caja o consultar con un Administrador."
+            : "Debe cerrar y volver a abrir sesión para operar."
+        }}
+      </h5>
+    </div>
+    <div class="pantallasGrandes">
+      <app-btn-agregar
         class="right"
         (click)="toggleAgregarVehiculoComponent()"
-        ></app-btn-agregar>
-      </div>      
+      ></app-btn-agregar>
+    </div>
   </div>
   <table class="table w-100">
     <!-- <colgroup>
@@ -56,24 +57,26 @@
       <col width="10%" />
     </colgroup> -->
     <thead>
-    <tr>
-      <th scope="col">Patente</th>
-      <th scope="col">Marca</th>
-      <th scope="col">Modelo</th>
-      <th scope="col">Color</th>
-      <th scope="col">Tarifa</th>
-      <th scope="col" id="abono" class="pantallasGrandes">Abono</th>
-      <th scope="col" id="botones" class="pantallasGrandes"><i class="bi bi-pencil-fill"></i></th>
-    </tr>
+      <tr>
+        <th scope="col">Patente</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Color</th>
+        <th scope="col">Tarifa</th>
+        <th scope="col" id="abono" class="pantallasGrandes">Abono</th>
+        <th scope="col" id="botones" class="pantallasGrandes">
+          <i class="bi bi-pencil-fill"></i>
+        </th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let vehiculo of vehiculosPorCliente">
-      <td class="align-middle">{{ vehiculo.patente }}</td>
-      <td class="align-middle">{{ vehiculo.marca }}</td>
-      <td class="align-middle">{{ vehiculo.modelo }}</td>
-      <td class="align-middle">{{ vehiculo.color }}</td>
-      <td class="align-middle">{{ vehiculo.tarifa.nombre }}</td>
-      <!-- <td *ngIf="vehiculo.estado === 1">Pago</td>
+      <tr *ngFor="let vehiculo of vehiculosPorCliente">
+        <td class="align-middle">{{ vehiculo.patente }}</td>
+        <td class="align-middle">{{ vehiculo.marca }}</td>
+        <td class="align-middle">{{ vehiculo.modelo }}</td>
+        <td class="align-middle">{{ vehiculo.color }}</td>
+        <td class="align-middle">{{ vehiculo.tarifa.nombre }}</td>
+        <!-- <td *ngIf="vehiculo.estado === 1">Pago</td>
       <td *ngIf="($modoCaja | async) === 'abierta'">
         <app-btn-eliminar
           *ngIf="vehiculo.estado === 0"
@@ -83,32 +86,32 @@
         ></app-btn-eliminar>
       </td> -->
 
-      <td class="align-middle text-center pantallasGrandes">
-        <ng-container *ngIf="vehiculo.estado === 1; else pagar">
-          <span style="color: green">Pago</span>
-        </ng-container>
-        <ng-container *ngIf="vehiculo.estado === 0">
-          <app-btn-eliminar
-            class="right"
-            [name]="'Pagar'"
-            (click)="efectuarPago(vehiculo)"
-            [disabled]="($modoCaja | async) !== 'abierta'"
-          ></app-btn-eliminar>
-        </ng-container>
-        <ng-template #pagar></ng-template>
-      </td>
+        <td class="align-middle text-center pantallasGrandes">
+          <ng-container *ngIf="vehiculo.estado === 1; else pagar">
+            <span style="color: green">Pago</span>
+          </ng-container>
+          <ng-container *ngIf="vehiculo.estado === 0">
+            <app-btn-eliminar
+              class="right"
+              [name]="'Pagar'"
+              (click)="efectuarPago(vehiculo)"
+              [disabled]="($modoCaja | async) !== 'abierta'"
+            ></app-btn-eliminar>
+          </ng-container>
+          <ng-template #pagar></ng-template>
+        </td>
 
-      <td class="d-flex align-items-center pantallasGrandes">
-        <app-btn-editar
-          class="right botones"
-          (click)="toggleEditarVehiculoComponent(vehiculo)"
-        ></app-btn-editar>
-        <app-btn-eliminar
-          class="right botones"
-          (click)="eliminarVehiculo(vehiculo)"
-        ></app-btn-eliminar>
-      </td>
-    </tr>
+        <td class="d-flex align-items-center pantallasGrandes">
+          <app-btn-editar
+            class="right botones"
+            (click)="toggleEditarVehiculoComponent(vehiculo)"
+          ></app-btn-editar>
+          <app-btn-eliminar
+            class="right botones"
+            (click)="eliminarVehiculo(vehiculo)"
+          ></app-btn-eliminar>
+        </td>
+      </tr>
     </tbody>
   </table>
 
