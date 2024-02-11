@@ -1,9 +1,14 @@
 
 <!-- <H1 class="display-1" style="text-align: center;">Alumnos </H1> -->
 
-  
+<div class="container">
+  <ng-container *ngIf="mostrarVista; else vistaCompleta">
 
-  <div class="container">
+    mostar vista minimizada
+
+    </ng-container>
+
+    <ng-template #vistaCompleta>
     <div style="float: right" class="pantallasPequenias2" >
       <app-btn-ingreso
         class="right"
@@ -80,5 +85,6 @@
         </tbody>
       </table>
     </div>
+    </ng-template>
   </div>
   

@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
-import { EstadoCajaService } from 'src/app/servicios/caja/estado-caja.service';
 import { StorageService } from 'src/app/servicios/storage/storage.service';
 import { CursosFormComponent } from '../cursos-form/cursos-form.component';
 
@@ -10,8 +8,8 @@ import { CursosFormComponent } from '../cursos-form/cursos-form.component';
   selector: 'app-cursos-control',
   template: `
 
-<p>{{ mensaje }}</p>
   <app-cursos-view
+  [mostrarVista]="mostrarVista"
     [data]="data$"
     (newItemEvent)="getMsg($event)"
   ></app-cursos-view>
@@ -23,8 +21,9 @@ export class CursosControlComponent implements OnInit {
 
   componente: string = 'cursos';
   data$!: any;
-  // $modoCaja: any;
 
+
+  // el input determina el comportamiento del componente, como crud o como auxiliar de otro
 
   @Input() mostrarVista: boolean = false;
   mensaje: string = 'Mensaje predeterminado';
@@ -44,14 +43,12 @@ export class CursosControlComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private fb: FormBuilder,
     private storage: StorageService,
-    private estadoCaja: EstadoCajaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.data$ = this.storage.cursos$;
-    console.log("cursos component" ,this.data$)
+    console.log("cursos component", this.data$)
 
   }
 
@@ -65,7 +62,7 @@ export class CursosControlComponent implements OnInit {
       const modalRef = this.modalService.open(CursosFormComponent, {
         windowClass: 'myCustomModalClass',
         //  centered: true,
-        size: 'xl', 
+        size: 'xl',
       });
 
       let info = {
@@ -79,59 +76,25 @@ export class CursosControlComponent implements OnInit {
 
           this.selectCrudOp(result.op, result.item);
         },
-        (reason) => {}
+        (reason) => { }
       );
     }
   }
 
   // seleccionar operacion CRUD
 
-  selectCrudOp(op: string, item: any) {
-    switch (op) {
-      case 'Agregar': {
-        this.storage.addItem(this.componente, item);
-        break;
-      }
+  selectCrudOp(op: string, item: any): void {
+    const operaciones: { [key: string]: () => void } = {
+      'Agregar': () => this.storage.addItem(this.componente, item),
+      'Editar': () => this.storage.updateItem(this.componente, item),
+      'Eliminar': () => this.storage.deleteItem(this.componente, item),
+      'default': () => { /* console.log('sin operacion en case crud'); */ }
+    };
 
-      case 'Editar': {
-        this.storage.updateItem(this.componente, item);
-        break;
-      }
-      case 'Eliminar': {
-        this.storage.deleteItem(this.componente, item);
-        break;
-      }
-      case 'Vehiculo': {
-        //this.delete( item.id);
-        break;
-      }
-      case 'Vehiculo Agregar': {
-        //console.log("llega aca?");
-        this.storage.addItem('vehiculos', item);
-        break;
-      }
-      case 'Vehiculo Editar': {
-        
-        //console.log("vehiculo editar", item)
-        this.storage.updateItem('vehiculos', item);
-        break;
-      }
-      case 'Vehiculo Eliminar': {
-        this.storage.deleteItem('vehiculos', item);
-        break;
-      }
-
-      case 'Mostrar': {
-        //NO HACE NADA, SOLO MUESTRA
-        break;
-      }
-
-      default: {
-        //console.log('sin operacion en case crud');
-        break;
-      }
-    }
+    const operacion = operaciones[op] || operaciones['default'];
+    operacion();
   }
+
 }
 
 

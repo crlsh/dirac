@@ -19,7 +19,7 @@ export class AlumnosViewComponent implements OnInit {
   cursos: string = 'Cursos';
   dtOptions: DataTables.Settings = {};
   msg: any
-  
+  @Input() mostrarVista: boolean = false;
 
 
 

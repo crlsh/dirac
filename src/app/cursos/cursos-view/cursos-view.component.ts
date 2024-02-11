@@ -16,6 +16,7 @@ export class CursosViewComponent implements OnInit {
   alumnos: string = 'Alumno';
   dtOptions: DataTables.Settings = {};
   msg: any;
+  @Input() mostrarVista: boolean = false;
 
   constructor(private storageService: StorageService) {}
 
@@ -50,15 +51,28 @@ export class CursosViewComponent implements OnInit {
   }
 
   setDataTableOptions() {
-    this.dtOptions = {
-      // searching: false,
-      dom: 't<"bottom"riflp><"clear">',
-      language: LanguageApp.spanish_datatables,
-      columnDefs: [
-        { orderable: false, targets: [5] },
-        { searchable: false, targets: [5] },
-        /* { width: '3rem', targets: 0}, */
-      ],
-    };
+    if (this.mostrarVista) {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [2] },
+          { searchable: false, targets: [2] },
+        ],
+      };
+    } else {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [5] },
+          { searchable: false, targets: [5] },
+        ],
+      };
+    }
   }
 }
