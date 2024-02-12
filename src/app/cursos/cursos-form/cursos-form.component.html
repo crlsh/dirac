@@ -1,22 +1,12 @@
-<!-- <div *ngIf="titulo === 'Profesores'; else cursos">
-  <app-vehiculos-form
-    [item]="item"
-    (newItemEvent)="getMsg($event)"
-  ></app-vehiculos-form>
-</div> -->
-
-<div *ngIf="titulo === 'Profesores';">
+<div *ngIf="titulo === 'Profesores'">
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
-
 </div>
 
-
-<div *ngIf="titulo === 'Alumnos'; ">
+<div *ngIf="titulo === 'Alumnos'">
   <app-alumnos-control [mostrarVista]="true"></app-alumnos-control>
-
 </div>
 
-<div *ngIf="titulo !== 'Profesores' && titulo !== 'Alumnos';">
+<div *ngIf="titulo !== 'Profesores' && titulo !== 'Alumnos'">
   <div class="modal-header">
     <h1 class="modal-title" id="modal-basic-title" *ngIf="!soloVista">
       {{ titulo }} Curso
@@ -50,7 +40,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="Profesor">Profesor</label>
             <div class="input-group">
               <input
@@ -65,9 +55,139 @@
                 [ngClass]="{ isDisabled: soloVista }"
               />
             </div>
-          </div>
+          </div> -->
 
-          <div class="form-group">
+          <!-- Inicio - Fin lado a lado  -->
+          <td>
+            <div class="form-group">
+              <label for="inicio">Inicio</label>
+              <div class="input-group">
+                <input
+                  formControlName="inicio"
+                  class="form-control"
+                  required
+                  type="date"
+                />
+              </div>
+              <!-- Agrega un div para mostrar el mensaje de error -->
+              <div
+                *ngIf="Inicio?.errors && Inicio?.touched"
+                class="text-danger fs-6"
+                style="margin-top: 0.25rem"
+              >
+                <p *ngIf="Inicio?.errors?.required">
+                  La fecha de inicio es requerida.
+                </p>
+                <p *ngIf="Inicio?.errors?.fechaInvalida">
+                  La fecha de inicio debe ser anterior a la de fin.
+                </p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="fin">Fin</label>
+              <div class="input-group">
+                <input
+                  formControlName="fin"
+                  class="form-control"
+                  required
+                  type="date"
+                />
+              </div>
+              <!-- Agrega un div para mostrar el mensaje de error -->
+              <div
+                *ngIf="Fin?.errors && Fin?.touched"
+                class="text-danger fs-6"
+                style="margin-top: 0.25rem"
+              >
+                <p *ngIf="Fin?.errors?.required">
+                  La fecha de fin es requerida.
+                </p>
+                <p *ngIf="Fin?.errors?.fechaInvalida">
+                  La fecha de fin debe ser posterior a la de inicio.
+                </p>
+              </div>
+            </div>
+          </td>
+
+          <!-- dias y horarios del curso -->
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex align-items-center">
+                  <div class="form-group mr-3">
+                    <label for="diaSemana">Día de la semana</label>
+                    <select formControlName="diaSemana" class="form-control">
+                      <option *ngFor="let dia of diasSemana">{{ dia }}</option>
+                    </select>
+                  </div>
+          
+                  <div class="form-group mr-3">
+                    <label for="horaInicio">Hora de inicio</label>
+                    <ngb-timepicker
+                      formControlName="horaInicio"
+                      [(ngModel)]="timeInicio"
+                      [seconds]="false"
+                      [minuteStep]="30"
+                    ></ngb-timepicker>
+                  </div>
+          
+                  <div class="form-group">
+                    <label for="horaFin">Hora de fin</label>
+                    <ngb-timepicker
+                      formControlName="horaFin"
+                      [seconds]="false"
+                      [minuteStep]="30"
+                    ></ngb-timepicker>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="container">
+            <!-- Itera sobre la lista de días y horas -->
+            <div *ngFor="let diaHora of diasHoras; let i = index" class="row mb-3">
+              <div class="col">
+                <div class="d-flex align-items-center">
+                  <div class="form-group mr-3">
+                    <label for="diaSemana">Día de la semana</label>
+                    <select formControlName="diaSemana" class="form-control">
+                      <option *ngFor="let dia of diasSemana">{{ dia }}</option>
+                    </select>
+                  </div>
+          
+                  <div class="form-group mr-3">
+                    <label for="horaInicio">Hora de inicio</label>
+                    <ngb-timepicker
+                      formControlName="horaInicio"
+                      [(ngModel)]="timeInicio"
+                      [seconds]="false"
+                      [minuteStep]="30"
+                    ></ngb-timepicker>
+                  </div>
+          
+                  <div class="form-group">
+                    <label for="horaFin">Hora de fin</label>
+                    <ngb-timepicker
+                      formControlName="horaFin"
+                      [seconds]="false"
+                      [minuteStep]="30"
+                    ></ngb-timepicker>
+                  </div>
+          
+                  <!-- Botón para eliminar el día y la hora -->
+                  <button class="btn btn-danger ml-3" (click)="eliminarDiaHora(i)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Botón para agregar un nuevo día y hora -->
+            <button class="btn btn-primary mb-3" (click)="agregarDiaHora()">Agregar</button>
+          </div>
+          <!-- <div class="form-group">
             <label for="Inicio">Inicio</label>
             <div class="input-group">
               <input
@@ -93,7 +213,7 @@
                 [ngClass]="{ isDisabled: soloVista }"
               />
             </div>
-          </div>
+          </div> -->
 
           <div class="form-group">
             <label for="Costo">Costo</label>
@@ -136,27 +256,6 @@
             </div>
           </div> -->
 
-          <!-- Ingreso egreso lado a lado  -->
-          <!-- <table class="table">
-                <tr>
-                  <td>
-                    <div class="form-group">
-                      <label for="ingreso">Ingreso</label>
-                      <div class="input-group">
-                        <input formControlName="ingreso" class="form-control" required type="date">
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label for="egreso">Egreso</label>
-                      <div class="input-group">
-                        <input formControlName="egreso" class="form-control" required type="date">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </table> -->
           <div class="form-group">
             <div class="input-group">
               <input

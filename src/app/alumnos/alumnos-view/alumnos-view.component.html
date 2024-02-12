@@ -4,9 +4,40 @@
 <div class="container">
   <ng-container *ngIf="mostrarVista; else vistaCompleta">
 
-    mostar vista minimizada
+    <div class="mt-5">
+      <table datatable [dtOptions]="dtOptions" class="display table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th id="colBtn"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data | async; let i = index">
+            <td class="badge text-center align-middlee" scope="row">
+              {{ item.id }}
+            </td>
+            <td class="align-middle">{{ item.apellido }}</td>
+            <td class="align-middle">{{ item.nombre }}</td>
+            <td class="align-middle botones">
+              <app-btn-agregar
+                class="right"
+                (click)="msgBack('Agregar', item)"
+                [name]="'Agregar'"
+              >
+              </app-btn-agregar>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     </ng-container>
+
+
+
 
     <ng-template #vistaCompleta>
     <div style="float: right" class="pantallasPequenias2" >

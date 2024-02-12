@@ -11,11 +11,10 @@ import Swal from 'sweetalert2';
 export class ProfesoresViewComponent implements OnInit {
 
  
-
+  @Input() mostrarVista: boolean = false;
   @Input() data?: any 
   @Output() newItemEvent = new EventEmitter<any>();
   titulo: string = 'profesores';
-  vehiculo: string = 'Vehiculo';
   cursos: string = 'Cursos';
   alumnos:string = 'Alumno';
   dtOptions: DataTables.Settings = {};
@@ -60,18 +59,31 @@ export class ProfesoresViewComponent implements OnInit {
   }
 
 
-setDataTableOptions(){
-  this.dtOptions = {
-    // searching: false,
-    dom: 't<"bottom"riflp><"clear">',
-    language: LanguageApp.spanish_datatables,
-    columnDefs: [
-      { orderable: false, targets: [7] },
-      { searchable: false, targets: [7] },
-      /* { width: '3rem', targets: 0}, */
-  ]
-  };
-}
+  setDataTableOptions() {
+    if (this.mostrarVista) {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [2] },
+          { searchable: false, targets: [2] },
+        ],
+      };
+    } else {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [5] },
+          { searchable: false, targets: [5] },
+        ],
+      };
+    }
+  }
 
  
  

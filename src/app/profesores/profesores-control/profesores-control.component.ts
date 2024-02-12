@@ -10,13 +10,10 @@ import { ProfesoresFormComponent } from '../profesores-form/profesores-form.comp
   selector: 'app-profesores-control',
   template: `
 
-<p>{{ mensaje }}</p>
+
   <app-profesores-view
-
-
-  
     [data]="data$"
-
+    [mostrarVista]="mostrarVista"
     (newItemEvent)="getMsg($event)"
   ></app-profesores-view>
 `,
@@ -30,6 +27,7 @@ export class ProfesoresControlComponent implements OnInit {
   data$!: any;
   $modoCaja: any;
 
+ 
   @Input() mostrarVista: boolean = false;
   mensaje: string = 'Mensaje predeterminado';
 

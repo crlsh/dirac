@@ -22,7 +22,7 @@ export class AlumnosControlComponent implements OnInit {
 
   componente: string = 'alumnos';
   data$!: any;
-  $modoCaja: any;
+
 
 
   

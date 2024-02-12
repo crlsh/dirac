@@ -6,74 +6,72 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-alumnos-view',
   templateUrl: './alumnos-view.component.html',
-  styleUrls: ['./alumnos-view.component.scss']
+  styleUrls: ['./alumnos-view.component.scss'],
 })
 export class AlumnosViewComponent implements OnInit {
-
- 
-
-  @Input() data?: any 
+  @Input() data?: any;
   @Output() newItemEvent = new EventEmitter<any>();
   titulo: string = 'alumnos';
-  vehiculo: string = 'Vehiculo';
   cursos: string = 'Cursos';
   dtOptions: DataTables.Settings = {};
-  msg: any
+  msg: any;
   @Input() mostrarVista: boolean = false;
 
+  constructor(private storageService: StorageService) {}
 
-
-
-  constructor(private storageService: StorageService,) { }
-  
   ngOnInit(): void {
     this.setDataTableOptions();
-    
-}
+  }
 
-
-  msgBack(op: string, item: any) {    
+  msgBack(op: string, item: any) {
     let value = {
       op: op,
       item: item,
-    }
-    if(op === 'Eliminar'){
+    };
+    if (op === 'Eliminar') {
       Swal.fire({
         title: '¿Desea eliminar el cliente?',
-        text: "No podrá revertir esta acción",
+        text: 'No podrá revertir esta acción',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar'
+        confirmButtonText: 'Confirmar',
       }).then((result) => {
         if (result.isConfirmed) {
           this.newItemEvent.emit(value);
         }
-      })
-    }else{
+      });
+    } else {
       //console.log(value);
-      
+
       this.newItemEvent.emit(value);
     }
   }
 
-
-setDataTableOptions(){
-  this.dtOptions = {
-    // searching: false,
-    dom: 't<"bottom"riflp><"clear">',
-    language: LanguageApp.spanish_datatables,
-    columnDefs: [
-      { orderable: false, targets: [7] },
-      { searchable: false, targets: [7] },
-      /* { width: '3rem', targets: 0}, */
-  ]
-  };
-}
-
- 
- 
-
-
+  setDataTableOptions() {
+    if (this.mostrarVista) {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [2] },
+          { searchable: false, targets: [2] },
+        ],
+      };
+    } else {
+      this.dtOptions = {
+        // configuración específica para la vista completa
+        // por ejemplo, con búsqueda, con ordenamiento, etc.
+        dom: 't<"bottom"riflp><"clear">',
+        language: LanguageApp.spanish_datatables,
+        columnDefs: [
+          { orderable: false, targets: [5] },
+          { searchable: false, targets: [5] },
+        ],
+      };
+    }
+  }
 }

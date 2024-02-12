@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profesores-form.component.scss']
 })
 export class ProfesoresFormComponent implements OnInit {
+
   @Input() fromParent: any;
   editForm!: any;
   titulo!: string;
