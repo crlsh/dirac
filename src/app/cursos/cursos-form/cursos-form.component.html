@@ -1,3 +1,4 @@
+
 <div *ngIf="titulo === 'Profesores'">
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
 </div>
@@ -39,23 +40,6 @@
               />
             </div>
           </div>
-
-          <!-- <div class="form-group">
-            <label for="Profesor">Profesor</label>
-            <div class="input-group">
-              <input
-                formControlName="profesor"
-                class="form-control"
-                required
-                type="text"
-                [ngClass]="{
-                  'is-invalid': Profesor?.errors && Profesor?.touched,
-                  'is-valid': !Profesor?.errors && !Profesor?.touched
-                }"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-            </div>
-          </div> -->
 
           <!-- Inicio - Fin lado a lado  -->
           <td>
@@ -111,109 +95,76 @@
             </div>
           </td>
 
-          <!-- dias y horarios del curso -->
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <div class="d-flex align-items-center">
-                  <div class="form-group mr-3">
-                    <label for="diaSemana">Día de la semana</label>
-                    <select formControlName="diaSemana" class="form-control">
-                      <option *ngFor="let dia of diasSemana">{{ dia }}</option>
-                    </select>
-                  </div>
-          
-                  <div class="form-group mr-3">
-                    <label for="horaInicio">Hora de inicio</label>
-                    <ngb-timepicker
-                      formControlName="horaInicio"
-                      [(ngModel)]="timeInicio"
-                      [seconds]="false"
-                      [minuteStep]="30"
-                    ></ngb-timepicker>
-                  </div>
-          
-                  <div class="form-group">
-                    <label for="horaFin">Hora de fin</label>
-                    <ngb-timepicker
-                      formControlName="horaFin"
-                      [seconds]="false"
-                      [minuteStep]="30"
-                    ></ngb-timepicker>
+          <!-- horarios -->
+
+          <div formArrayName="horarios">
+            <div
+              *ngFor="let horario of horarios().controls; let empIndex = index"
+            >
+              <div
+                [formGroupName]="empIndex"
+                style="
+                  border: 1px solid blue;
+                  padding: 10px;
+                  width: 600px;
+                  margin: 5px;
+                "
+              >
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="d-flex align-items-center">
+                        <div>
+                        {{ empIndex }}
+                      </div>
+
+                        <div class="form-group mr-3">
+                          <label for="diaSemana">Día de la semana</label>
+                          <select
+                            formControlName="diaSemana"
+                            class="form-control"
+                          >
+                            <option *ngFor="let dia of diasSemana">
+                              {{ dia }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group mr-3">
+                          <label for="horaInicio">Hora de inicio</label>
+                          <ngb-timepicker
+                            formControlName="horaInicio"
+                            [(ngModel)]="timeInicio"
+                            [seconds]="false"
+                            [minuteStep]="30"
+                          ></ngb-timepicker>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="horaFin">Hora de fin</label>
+                          <ngb-timepicker
+                            formControlName="horaFin"
+                            [seconds]="false"
+                            [minuteStep]="30"
+                          ></ngb-timepicker>
+                        </div>
+                        <div>
+                        <button (click)="removecurso(empIndex)">Quitar</button>
+
+                      </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          
-
-          <div class="container">
-            <!-- Itera sobre la lista de días y horas -->
-            <div *ngFor="let diaHora of diasHoras; let i = index" class="row mb-3">
-              <div class="col">
-                <div class="d-flex align-items-center">
-                  <div class="form-group mr-3">
-                    <label for="diaSemana">Día de la semana</label>
-                    <select formControlName="diaSemana" class="form-control">
-                      <option *ngFor="let dia of diasSemana">{{ dia }}</option>
-                    </select>
-                  </div>
-          
-                  <div class="form-group mr-3">
-                    <label for="horaInicio">Hora de inicio</label>
-                    <ngb-timepicker
-                      formControlName="horaInicio"
-                      [(ngModel)]="timeInicio"
-                      [seconds]="false"
-                      [minuteStep]="30"
-                    ></ngb-timepicker>
-                  </div>
-          
-                  <div class="form-group">
-                    <label for="horaFin">Hora de fin</label>
-                    <ngb-timepicker
-                      formControlName="horaFin"
-                      [seconds]="false"
-                      [minuteStep]="30"
-                    ></ngb-timepicker>
-                  </div>
-          
-                  <!-- Botón para eliminar el día y la hora -->
-                  <button class="btn btn-danger ml-3" (click)="eliminarDiaHora(i)">Eliminar</button>
-                </div>
-              </div>
-            </div>
-          
-            <!-- Botón para agregar un nuevo día y hora -->
-            <button class="btn btn-primary mb-3" (click)="agregarDiaHora()">Agregar</button>
-          </div>
-          <!-- <div class="form-group">
-            <label for="Inicio">Inicio</label>
-            <div class="input-group">
-              <input
-                formControlName="inicio"
-                class="form-control"
-                type="text"
-                [ngClass]="{
-                  'is-invalid': Inicio?.errors && Inicio?.touched,
-                  'is-valid': !Inicio?.errors && !Inicio?.touched
-                }"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-            </div>
+            <button type="button" (click)="addHorario()">
+              Agregar Horario
+            </button>
           </div>
 
-          <div class="form-group">
-            <label for="Fin">Fin</label>
-            <div class="input-group">
-              <input
-                formControlName="fin"
-                class="form-control"
-                type="text"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-            </div>
-          </div> -->
+          {{ this.editForm.value | json }}
+          <!-- costos -->
 
           <div class="form-group">
             <label for="Costo">Costo</label>
@@ -244,18 +195,6 @@
             </div>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="Comentario">Comentario</label>
-            <div class="input-group">
-              <input
-                formControlName="comentario"
-                class="form-control"
-                type="text"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-            </div>
-          </div> -->
-
           <div class="form-group">
             <div class="input-group">
               <input
@@ -280,10 +219,3 @@
     </div>
   </div>
 </div>
-
-<!-- <select class="form-select form-select-md mb-3" (change)="changeTarifa($event)">
-  <option value={{tarifaSeleccionada}}>Elegir Tarifa</option>
-  <option *ngFor="let tarifa of tarifas">
-    {{tarifa.nombre}}
-  </option>
-</select> -->

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cursos } from 'src/app/interfaces/cursos';
 import Swal from 'sweetalert2';
 
@@ -65,9 +65,34 @@ export class CursosFormComponent implements OnInit {
       id: [this.item.id],
       horaInicio: ['', Validators.required],
       horaFin: [''], // También para la hora de fin
-      diaSemana: ['']
+      diaSemana: [''],
+      horarios: this.fb.array([])
     }, { validators: this.fechaInicioAntesDeFinValidator }); // <-- Usa this.fechaInicioAntesDeFinValidator
   }
+
+  horarios(): FormArray {
+    return this.editForm.get('horarios') as FormArray;
+  }
+ 
+  newHorario(): FormGroup {
+    return this.fb.group({
+      // firstName: '',
+      // lastName: '',
+      diaSemana: '',
+      horaInicio: '',
+      horaFin: '',
+
+    });
+  }
+ 
+  addHorario() {
+    this.horarios().push(this.newHorario());
+  }
+ 
+  removecurso(empIndex: number) {
+    this.horarios().removeAt(empIndex);
+  }
+ 
 
   // Define la función de validación personalizada dentro de la clase del componente
   fechaInicioAntesDeFinValidator(formGroup: FormGroup<any>) {
