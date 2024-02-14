@@ -15,11 +15,17 @@ export class CursosFormComponent implements OnInit {
   titulo: string;
   item: Cursos;
   soloVista = false;
-  timeInicio: {hour: number, minute: number};
-  diasSemana:string[]= ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', ];
+
+  diasSemana: string[] = [
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+  ];
 
   diasHoras: any[] = []; // Lista para almacenar los días y horas seleccionados
-
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {}
 
@@ -27,12 +33,23 @@ export class CursosFormComponent implements OnInit {
     this.titulo = this.fromParent.modo;
     this.item = this.fromParent.item;
     this.handleTitle(this.titulo);
-    this.timeInicio = {hour: 12, minute: 0};
   }
 
   handleTitle(titulo: string) {
     switch (titulo) {
       case 'Agregar':
+        {
+          // Si el modo es "Agregar", inicializa el objeto item con valores vacíos
+          this.item = {
+            id: '',
+            nombre: '',
+            inicio: new Date(), // inicializa con la fecha actual
+            fin: new Date(), // inicializa con la fecha actual
+            profesor: '',
+            costo: '',
+            horarios: []
+          };
+        }
         break;
       case 'Editar':
       case 'Mostrar':
@@ -45,7 +62,6 @@ export class CursosFormComponent implements OnInit {
     }
   }
 
-
   agregarDiaHora() {
     // Agrega un nuevo objeto vacío a la lista de días y horas
     this.diasHoras.push({});
@@ -56,56 +72,87 @@ export class CursosFormComponent implements OnInit {
     this.diasHoras.splice(index, 1);
   }
   configureForm() {
-    this.editForm = this.fb.group({
-      nombre: [this.item.nombre, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      inicio: [this.item.inicio, Validators.required],
-      fin: [this.item.fin, Validators.required],
-      profesor: [this.item.profesor, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      costo: [this.item.costo, Validators.pattern(/^[0-9]{5,10}$/)],
-      id: [this.item.id],
-      horaInicio: ['', Validators.required],
-      horaFin: [''], // También para la hora de fin
-      diaSemana: [''],
-      horarios: this.fb.array([])
-    }, { validators: this.fechaInicioAntesDeFinValidator }); // <-- Usa this.fechaInicioAntesDeFinValidator
+    this.editForm = this.fb.group(
+      {
+        nombre: [
+          this.item.nombre,
+          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
+        ],
+        inicio: [this.item.inicio, Validators.required],
+        fin: [this.item.fin, Validators.required],
+        profesor: [
+          this.item.profesor,
+          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
+        ],
+        costo: [this.item.costo, Validators.pattern(/^[0-9]{5,10}$/)],
+        id: [this.item.id],
+        horarios: this.fb.array([]),
+      },
+      { validators: this.fechaInicioAntesDeFinValidator }
+    ); // <-- Usa this.fechaInicioAntesDeFinValidator
+    // Cargar los horarios del item en el formulario
+    if (this.item.horarios && this.item.horarios.length > 0) {
+      this.item.horarios.forEach((horario) => {
+        this.horarios().push(
+          this.fb.group({
+            diaSemana: horario.diaSemana,
+            horaInicio: {
+              hour: horario.horaInicio.hour,
+              minute: horario.horaInicio.minute,
+            },
+            horaFin: {
+              hour: horario.horaFin.hour,
+              minute: horario.horaFin.minute,
+            },
+          })
+        );
+      });
+    }
   }
 
   horarios(): FormArray {
     return this.editForm.get('horarios') as FormArray;
   }
- 
+
   newHorario(): FormGroup {
     return this.fb.group({
-      // firstName: '',
-      // lastName: '',
-      diaSemana: '',
-      horaInicio: '',
-      horaFin: '',
-
+      diaSemana: 'Lunes',
+      horaInicio: {
+        hour: 13,
+        minute: 30,
+      },
+      horaFin: {
+        hour: 1,
+        minute: 30,
+      },
     });
   }
- 
+
   addHorario() {
     this.horarios().push(this.newHorario());
   }
- 
+
   removecurso(empIndex: number) {
     this.horarios().removeAt(empIndex);
   }
- 
 
   // Define la función de validación personalizada dentro de la clase del componente
   fechaInicioAntesDeFinValidator(formGroup: FormGroup<any>) {
     const inicioControl = formGroup.get('inicio');
     const finControl = formGroup.get('fin');
-  
+
     // Verifica si los controles de inicio y fin no son null antes de acceder a sus valores
-    if (inicioControl && finControl && inicioControl.value && finControl.value) {
+    if (
+      inicioControl &&
+      finControl &&
+      inicioControl.value &&
+      finControl.value
+    ) {
       const inicio = inicioControl.value;
       const fin = finControl.value;
-  
+
       if (new Date(inicio) >= new Date(fin)) {
-        inicioControl.setErrors({ 'fechaInvalida': true });
+        inicioControl.setErrors({ fechaInvalida: true });
       } else {
         inicioControl.setErrors(null);
       }

@@ -1,3 +1,15 @@
+export interface Horario {
+  diaSemana: string;
+  horaInicio: {
+    hour: number;
+    minute: number;
+  };
+  horaFin: {
+    hour: number;
+    minute: number;
+  };
+}
+
 export interface Cursos {
     id: string;
     nombre: string;
@@ -5,4 +17,5 @@ export interface Cursos {
     fin: Date;
     profesor: string;
     costo: string ;
+    horarios: Horario[];
   }

@@ -1,4 +1,3 @@
-
 <div *ngIf="titulo === 'Profesores'">
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
 </div>
@@ -12,11 +11,7 @@
     <h1 class="modal-title" id="modal-basic-title" *ngIf="!soloVista">
       {{ titulo }} Curso
     </h1>
-    <button
-      type="button"
-      class="close btn btn-primary"
-      (click)="activeModal.dismiss('Cross click')"
-    >
+    <button type="button" class="close btn btn-primary" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -27,17 +22,10 @@
           <div class="form-group">
             <label for="Nombre">Nombre</label>
             <div class="input-group">
-              <input
-                formControlName="nombre"
-                class="form-control"
-                required
-                type="text"
-                [ngClass]="{
+              <input formControlName="nombre" class="form-control" required type="text" [ngClass]="{
                   'is-invalid': Nombre?.errors && Nombre?.touched,
                   'is-valid': !Nombre?.errors && !Nombre?.touched
-                }"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
+                }" [ngClass]="{ isDisabled: soloVista }" />
             </div>
           </div>
 
@@ -46,19 +34,10 @@
             <div class="form-group">
               <label for="inicio">Inicio</label>
               <div class="input-group">
-                <input
-                  formControlName="inicio"
-                  class="form-control"
-                  required
-                  type="date"
-                />
+                <input formControlName="inicio" class="form-control" required type="date" />
               </div>
               <!-- Agrega un div para mostrar el mensaje de error -->
-              <div
-                *ngIf="Inicio?.errors && Inicio?.touched"
-                class="text-danger fs-6"
-                style="margin-top: 0.25rem"
-              >
+              <div *ngIf="Inicio?.errors && Inicio?.touched" class="text-danger fs-6" style="margin-top: 0.25rem">
                 <p *ngIf="Inicio?.errors?.required">
                   La fecha de inicio es requerida.
                 </p>
@@ -72,19 +51,10 @@
             <div class="form-group">
               <label for="fin">Fin</label>
               <div class="input-group">
-                <input
-                  formControlName="fin"
-                  class="form-control"
-                  required
-                  type="date"
-                />
+                <input formControlName="fin" class="form-control" required type="date" />
               </div>
               <!-- Agrega un div para mostrar el mensaje de error -->
-              <div
-                *ngIf="Fin?.errors && Fin?.touched"
-                class="text-danger fs-6"
-                style="margin-top: 0.25rem"
-              >
+              <div *ngIf="Fin?.errors && Fin?.touched" class="text-danger fs-6" style="margin-top: 0.25rem">
                 <p *ngIf="Fin?.errors?.required">
                   La fecha de fin es requerida.
                 </p>
@@ -98,32 +68,24 @@
           <!-- horarios -->
 
           <div formArrayName="horarios">
-            <div
-              *ngFor="let horario of horarios().controls; let empIndex = index"
-            >
-              <div
-                [formGroupName]="empIndex"
-                style="
+            <div *ngFor="let horario of horarios().controls; let empIndex = index">
+              <div [formGroupName]="empIndex" style="
                   border: 1px solid blue;
                   padding: 10px;
                   width: 600px;
                   margin: 5px;
-                "
-              >
+                ">
                 <div class="container">
                   <div class="row">
                     <div class="col">
                       <div class="d-flex align-items-center">
                         <div>
-                        {{ empIndex }}
-                      </div>
+                          {{ empIndex }}
+                        </div>
 
                         <div class="form-group mr-3">
                           <label for="diaSemana">Día de la semana</label>
-                          <select
-                            formControlName="diaSemana"
-                            class="form-control"
-                          >
+                          <select formControlName="diaSemana" class="form-control">
                             <option *ngFor="let dia of diasSemana">
                               {{ dia }}
                             </option>
@@ -132,26 +94,19 @@
 
                         <div class="form-group mr-3">
                           <label for="horaInicio">Hora de inicio</label>
-                          <ngb-timepicker
-                            formControlName="horaInicio"
-                            [(ngModel)]="timeInicio"
-                            [seconds]="false"
-                            [minuteStep]="30"
-                          ></ngb-timepicker>
+                          <ngb-timepicker formControlName="horaInicio" [seconds]="false"
+                            [minuteStep]="30"></ngb-timepicker>
                         </div>
 
                         <div class="form-group">
                           <label for="horaFin">Hora de fin</label>
-                          <ngb-timepicker
-                            formControlName="horaFin"
-                            [seconds]="false"
-                            [minuteStep]="30"
-                          ></ngb-timepicker>
+                          <ngb-timepicker formControlName="horaFin" [seconds]="false"
+                            [minuteStep]="30"></ngb-timepicker>
                         </div>
                         <div>
-                        <button (click)="removecurso(empIndex)">Quitar</button>
+                          <button (click)="removecurso(empIndex)">Quitar</button>
 
-                      </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -163,28 +118,18 @@
             </button>
           </div>
 
-          {{ this.editForm.value | json }}
+          <!-- {{ this.editForm.value | json }} -->
           <!-- costos -->
 
           <div class="form-group">
             <label for="Costo">Costo</label>
             <div class="input-group">
-              <input
-                formControlName="costo"
-                class="form-control"
-                required
-                type="costo"
-                placeholder="example@example.com"
-                [ngClass]="{
+              <input formControlName="costo" class="form-control" required type="costo"
+                placeholder="example@example.com" [ngClass]="{
                   'is-invalid': Costo?.errors && Costo?.touched,
                   'is-valid': !Costo?.errors && !Costo?.touched
-                }"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-              <div
-                *ngIf="Costo?.errors && Costo?.touched"
-                class="text-danger fs-6"
-              >
+                }" [ngClass]="{ isDisabled: soloVista }" />
+              <div *ngIf="Costo?.errors && Costo?.touched" class="text-danger fs-6">
                 <p *ngIf="Costo?.hasError('required')">
                   El costo es requerido.
                 </p>
@@ -197,22 +142,13 @@
 
           <div class="form-group">
             <div class="input-group">
-              <input
-                formControlName="id"
-                class="form-control"
-                type="hidden"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
+              <input formControlName="id" class="form-control" type="hidden" [ngClass]="{ isDisabled: soloVista }" />
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer" *ngIf="!soloVista">
-        <button
-          class="btn btn-success"
-          [disabled]="editForm.invalid"
-          (click)="guardarDatos()"
-        >
+        <button class="btn btn-success" [disabled]="editForm.invalid" (click)="guardarDatos()">
           {{ titulo }}
         </button>
       </div>
