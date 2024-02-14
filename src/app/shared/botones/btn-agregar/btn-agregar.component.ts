@@ -27,6 +27,12 @@ import { Component, Input, OnInit } from '@angular/core';
       ></i>
 
       <i
+        *ngIf="name === 'Horario'"
+        class="fa fa-clock"
+        style=" vertical-align: middle;"
+      ></i>
+
+      <i
         *ngIf="name === 'Alumno'"
         class="fa fa-user"
         style=" vertical-align: middle;"

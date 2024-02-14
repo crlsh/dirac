@@ -14,9 +14,11 @@ export class CursosViewComponent implements OnInit {
   titulo: string = 'cursos';
   profesor: string = 'Profesor';
   alumnos: string = 'Alumno';
+  horario: string = 'Horario';
   dtOptions: DataTables.Settings = {};
   msg: any;
   @Input() mostrarVista: boolean = false;
+
 
   constructor(private storageService: StorageService) {}
 
