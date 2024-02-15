@@ -4,6 +4,10 @@
 //     margin: 0 auto; 
 //   }
 
+.modal-body form .form-group {
+    max-width: 100%;
+  }
+
 .isDisabled {
     pointer-events: none;
     cursor: not-allowed;

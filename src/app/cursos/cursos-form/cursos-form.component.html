@@ -1,3 +1,5 @@
+
+<app-horarios-form  [jsonData]="jsonData"></app-horarios-form>
 <div *ngIf="titulo === 'Profesores'">
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
 </div>
@@ -20,11 +22,11 @@
       <div class="modal-body">
         <form [formGroup]="editForm" novalidate>
           <div class="form-group">
-            <label for="Nombre">Nombre</label>
+            <label for="nombre">Nombre</label>
             <div class="input-group">
               <input formControlName="nombre" class="form-control" required type="text" [ngClass]="{
-                  'is-invalid': Nombre?.errors && Nombre?.touched,
-                  'is-valid': !Nombre?.errors && !Nombre?.touched
+                  'is-invalid': nombre?.errors && nombre?.touched,
+                  'is-valid': !nombre?.errors && !nombre?.touched
                 }" [ngClass]="{ isDisabled: soloVista }" />
             </div>
           </div>
@@ -94,7 +96,7 @@
 
                         <div class="form-group mr-3">
                           <label for="horaInicio">Hora de inicio</label>
-                          <ngb-timepicker formControlName="horaInicio" [seconds]="false"
+                          <ngb-timepicker formControlName="horaInicio" [seconds]="false"      [ngModel]="getHoraValue(horario, empIndex, 'horaInicio')"
                             [minuteStep]="30"></ngb-timepicker>
                         </div>
 

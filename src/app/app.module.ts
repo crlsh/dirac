@@ -109,6 +109,7 @@ import { CursosFormComponent } from './cursos/cursos-form/cursos-form.component'
 import { CursosViewComponent } from './cursos/cursos-view/cursos-view.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
+import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.component';
 
 
 
@@ -193,6 +194,7 @@ import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
       CursosFormComponent,
       CursosViewComponent,
       CalendarComponent,
+      HorariosFormComponent,
 
   ],
   imports: [

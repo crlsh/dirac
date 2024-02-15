@@ -16,6 +16,29 @@ export class CursosFormComponent implements OnInit {
   item: Cursos;
   soloVista = false;
 
+  // jsonData = {
+  //   "nombre": "Curso de Angular",
+  //   "horarios": [
+  //     {
+  //       "dia": "Lunes",
+  //       "horaInicio": "08:00",
+  //       "horaFin": "10:00"
+  //     },
+  //     {
+  //       "dia": "Miércoles",
+  //       "horaInicio": "14:30",
+  //       "horaFin": "16:30"
+  //     }
+  //   ]
+  // };
+
+
+  jsonData = {
+    "nombre": "Curso de Angular",
+
+  
+  };
+
   diasSemana: string[] = [
     'Lunes',
     'Martes',
@@ -38,21 +61,11 @@ export class CursosFormComponent implements OnInit {
   handleTitle(titulo: string) {
     switch (titulo) {
       case 'Agregar':
-        {
-          // Si el modo es "Agregar", inicializa el objeto item con valores vacíos
-          this.item = {
-            id: '',
-            nombre: '',
-            inicio: new Date(), // inicializa con la fecha actual
-            fin: new Date(), // inicializa con la fecha actual
-            profesor: '',
-            costo: '',
-            horarios: []
-          };
-        }
+ this.createFormVacio()
         break;
       case 'Editar':
       case 'Mostrar':
+        this.createFormVacio()
         this.configureForm();
         if (titulo === 'Mostrar') this.soloVista = true;
         break;
@@ -71,44 +84,68 @@ export class CursosFormComponent implements OnInit {
     // Elimina el día y la hora en la posición index de la lista
     this.diasHoras.splice(index, 1);
   }
-  configureForm() {
-    this.editForm = this.fb.group(
-      {
-        nombre: [
-          this.item.nombre,
-          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
-        ],
-        inicio: [this.item.inicio, Validators.required],
-        fin: [this.item.fin, Validators.required],
-        profesor: [
-          this.item.profesor,
-          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
-        ],
-        costo: [this.item.costo, Validators.pattern(/^[0-9]{5,10}$/)],
-        id: [this.item.id],
-        horarios: this.fb.array([]),
-      },
-      { validators: this.fechaInicioAntesDeFinValidator }
-    ); // <-- Usa this.fechaInicioAntesDeFinValidator
-    // Cargar los horarios del item en el formulario
-    if (this.item.horarios && this.item.horarios.length > 0) {
-      this.item.horarios.forEach((horario) => {
-        this.horarios().push(
-          this.fb.group({
-            diaSemana: horario.diaSemana,
-            horaInicio: {
-              hour: horario.horaInicio.hour,
-              minute: horario.horaInicio.minute,
-            },
-            horaFin: {
-              hour: horario.horaFin.hour,
-              minute: horario.horaFin.minute,
-            },
-          })
-        );
-      });
-    }
+
+  createFormVacio() {
+    this.editForm = this.fb.group({
+      nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+      inicio: ['', Validators.required],
+      fin: ['', Validators.required],
+      profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+      costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
+      id: [''],
+      horarios: this.fb.array([]), // Inicializamos el FormArray vacío
+    }, { validators: this.fechaInicioAntesDeFinValidator });
   }
+
+
+  configureForm() {
+  // Actualiza los valores del item en el formulario
+  this.editForm.patchValue({
+    nombre: this.item.nombre,
+    inicio: this.item.inicio,
+    fin: this.item.fin,
+    profesor: this.item.profesor,
+    costo: this.item.costo,
+    id: this.item.id
+  });
+
+  // Limpia el FormArray de horarios antes de cargar los nuevos horarios del item
+  // this.clearHorarios();
+
+  // Cargar los horarios del item en el formulario
+  if (this.item.horarios && this.item.horarios.length > 0) {
+    this.item.horarios.forEach((horario) => {
+      console.log(this.item.horarios)
+      this.horarios().push(
+        this.fb.group({
+          diaSemana: horario.diaSemana,
+          horaInicio: {
+            hour: horario.horaInicio.hour,
+            minute: horario.horaInicio.minute,
+          },
+          horaFin: {
+            hour: horario.horaFin.hour,
+            minute: horario.horaFin.minute,
+          },
+        })
+      );
+    });
+  }
+}
+
+
+getHoraValue(horario: any, empIndex: number, field: 'horaInicio' | 'horaFin') {
+  const control = this.horarios().at(empIndex).get(field);
+  return control ? control.value : null;
+}
+
+
+// Función para limpiar el FormArray de horarios
+clearHorarios() {
+  while (this.horarios().length !== 0) {
+    this.horarios().removeAt(0);
+  }
+}
 
   horarios(): FormArray {
     return this.editForm.get('horarios') as FormArray;
@@ -167,7 +204,7 @@ export class CursosFormComponent implements OnInit {
     this.activeModal.close(value);
   }
 
-  get Nombre() {
+  get nombre() {
     return this.editForm.get('nombre');
   }
 
