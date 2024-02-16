@@ -52,6 +52,12 @@ export class CursosViewComponent implements OnInit {
     }
   }
 
+
+  someClickHandler(info: any): void {
+    console.log( info, 'from datatable')
+  }
+
+
   setDataTableOptions() {
     if (this.mostrarVista) {
       this.dtOptions = {
@@ -74,7 +80,20 @@ export class CursosViewComponent implements OnInit {
           { orderable: false, targets: [5] },
           { searchable: false, targets: [5] },
         ],
+        rowCallback: (row: Node, data: any[] | Object, index: number) => {
+          const self = this;
+          // Unbind first in order to avoid any duplicate handler
+          // (see https://github.com/l-lin/angular-datatables/issues/87)
+          // Note: In newer jQuery v3 versions, `unbind` and `bind` are 
+          // deprecated in favor of `off` and `on`
+          $('td', row).off('click');
+          $('td', row).on('click', () => {
+            self.someClickHandler(data);
+          });
+          return row;
+        }
+      };
       };
     }
   }
-}
+

@@ -35,20 +35,14 @@ export class CursosFormComponent implements OnInit {
 
   jsonData = {
     "nombre": "Curso de Angular",
+    "horarios": [  ]
 
   
   };
 
-  diasSemana: string[] = [
-    'Lunes',
-    'Martes',
-    'Miércoles',
-    'Jueves',
-    'Viernes',
-    'Sábado',
-  ];
 
-  diasHoras: any[] = []; // Lista para almacenar los días y horas seleccionados
+
+
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {}
 
@@ -75,15 +69,6 @@ export class CursosFormComponent implements OnInit {
     }
   }
 
-  agregarDiaHora() {
-    // Agrega un nuevo objeto vacío a la lista de días y horas
-    this.diasHoras.push({});
-  }
-
-  eliminarDiaHora(index: number) {
-    // Elimina el día y la hora en la posición index de la lista
-    this.diasHoras.splice(index, 1);
-  }
 
   createFormVacio() {
     this.editForm = this.fb.group({
@@ -93,7 +78,7 @@ export class CursosFormComponent implements OnInit {
       profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
       costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
       id: [''],
-      horarios: this.fb.array([]), // Inicializamos el FormArray vacío
+ 
     }, { validators: this.fechaInicioAntesDeFinValidator });
   }
 
@@ -109,69 +94,13 @@ export class CursosFormComponent implements OnInit {
     id: this.item.id
   });
 
-  // Limpia el FormArray de horarios antes de cargar los nuevos horarios del item
-  // this.clearHorarios();
-
-  // Cargar los horarios del item en el formulario
-  if (this.item.horarios && this.item.horarios.length > 0) {
-    this.item.horarios.forEach((horario) => {
-      console.log(this.item.horarios)
-      this.horarios().push(
-        this.fb.group({
-          diaSemana: horario.diaSemana,
-          horaInicio: {
-            hour: horario.horaInicio.hour,
-            minute: horario.horaInicio.minute,
-          },
-          horaFin: {
-            hour: horario.horaFin.hour,
-            minute: horario.horaFin.minute,
-          },
-        })
-      );
-    });
-  }
-}
+ }
 
 
-getHoraValue(horario: any, empIndex: number, field: 'horaInicio' | 'horaFin') {
-  const control = this.horarios().at(empIndex).get(field);
-  return control ? control.value : null;
-}
 
 
-// Función para limpiar el FormArray de horarios
-clearHorarios() {
-  while (this.horarios().length !== 0) {
-    this.horarios().removeAt(0);
-  }
-}
 
-  horarios(): FormArray {
-    return this.editForm.get('horarios') as FormArray;
-  }
 
-  newHorario(): FormGroup {
-    return this.fb.group({
-      diaSemana: 'Lunes',
-      horaInicio: {
-        hour: 13,
-        minute: 30,
-      },
-      horaFin: {
-        hour: 1,
-        minute: 30,
-      },
-    });
-  }
-
-  addHorario() {
-    this.horarios().push(this.newHorario());
-  }
-
-  removecurso(empIndex: number) {
-    this.horarios().removeAt(empIndex);
-  }
 
   // Define la función de validación personalizada dentro de la clase del componente
   fechaInicioAntesDeFinValidator(formGroup: FormGroup<any>) {
