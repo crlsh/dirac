@@ -2,34 +2,80 @@
   <form [formGroup]="cursoForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="nombre">Nombre del curso</label>
-      <input type="text" class="form-control" formControlName="nombre" [disabled]="!modoEdicion">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="nombre"
+        [disabled]="!modoEdicion"
+      />
     </div>
     <div formArrayName="horarios">
-      <div class="form-group" *ngFor="let horario of horarios.controls; let i = index" [formGroupName]="i">
+      <div
+        class="form-group"
+        *ngFor="let horario of horarios.controls; let i = index"
+        [formGroupName]="i"
+      >
         <label>Horario {{ i + 1 }}</label>
         <div class="row">
           <div class="col">
-            <select class="form-control" formControlName="dia" [disabled]="!modoEdicion">
-              <option value="" disabled selected hidden>Selecciona un día</option>
-              <option *ngFor="let dia of diasSemana" [value]="dia">{{ dia }}</option>
+            <select
+              class="form-control"
+              formControlName="dia"
+              [disabled]="!modoEdicion"
+            >
+              <option value="" disabled selected hidden>
+                Selecciona un día
+              </option>
+              <option *ngFor="let dia of diasSemana" [value]="dia">
+                {{ dia }}
+              </option>
             </select>
           </div>
           <div class="col">
-            <input type="time" class="form-control" formControlName="horaInicio" [disabled]="!modoEdicion">
+            <input
+              type="time"
+              class="form-control"
+              formControlName="horaInicio"
+              [disabled]="!modoEdicion"
+            />
           </div>
           <div class="col">
-            <input type="time" class="form-control" formControlName="horaFin" [disabled]="!modoEdicion">
+            <input
+              type="time"
+              class="form-control"
+              formControlName="horaFin"
+              [disabled]="!modoEdicion"
+            />
           </div>
           <div class="col" *ngIf="modoEdicion">
-            <button type="button" class="btn btn-danger" (click)="quitarHorario(i)">Quitar</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="quitarHorario(i)"
+            >
+              Quitar
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary mt-3" (click)="agregarHorario()" *ngIf="modoEdicion">Agregar horario</button>
-    <button type="submit" class="btn btn-success mt-3" *ngIf="modoEdicion">Guardar</button>
-    <button type="button" class="btn btn-info mt-3" (click)="cambiarModoEdicion()">
-      {{ modoEdicion ? 'Terminar edición' : 'Editar' }}
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="agregarHorario()"
+      *ngIf="modoEdicion"
+    >
+      Agregar horario
+    </button>
+    <button type="submit" class="btn btn-success mt-3" *ngIf="modoEdicion">
+      Guardar
+    </button>
+    <button
+      type="button"
+      class="btn btn-info mt-3"
+      (click)="cambiarModoEdicion()"
+    >
+      {{ modoEdicion ? "Terminar edición" : "Editar" }}
     </button>
   </form>
 </div>

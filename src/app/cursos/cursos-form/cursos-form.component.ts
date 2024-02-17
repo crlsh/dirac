@@ -14,7 +14,16 @@ export class CursosFormComponent implements OnInit {
   editForm: any;
   titulo: string;
   item: Cursos;
-  soloVista = false;
+  diasSemana: string[] = [
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+    'Domingo',
+  ];
+  modoEdicion = false; // Variable para controlar el modo de vista del formulario
 
   // jsonData = {
   //   "nombre": "Curso de Angular",
@@ -32,21 +41,15 @@ export class CursosFormComponent implements OnInit {
   //   ]
   // };
 
-
   jsonData = {
-    "nombre": "Curso de Angular",
-    "horarios": [  ]
-
-  
+    nombre: 'Curso de Angular',
+    horarios: [],
   };
-
-
-
-
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.createFormVacio();
     this.titulo = this.fromParent.modo;
     this.item = this.fromParent.item;
     this.handleTitle(this.titulo);
@@ -55,13 +58,11 @@ export class CursosFormComponent implements OnInit {
   handleTitle(titulo: string) {
     switch (titulo) {
       case 'Agregar':
- this.createFormVacio()
         break;
       case 'Editar':
       case 'Mostrar':
-        this.createFormVacio()
         this.configureForm();
-        if (titulo === 'Mostrar') this.soloVista = true;
+        // if (titulo === 'Mostrar') this.soloVista = true;
         break;
       case 'Eliminar':
         this.closeModal();
@@ -69,38 +70,58 @@ export class CursosFormComponent implements OnInit {
     }
   }
 
-
   createFormVacio() {
-    this.editForm = this.fb.group({
-      nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      inicio: ['', Validators.required],
-      fin: ['', Validators.required],
-      profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-      costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
-      id: [''],
- 
-    }, { validators: this.fechaInicioAntesDeFinValidator });
+    this.editForm = this.fb.group(
+      {
+        nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+        inicio: ['', Validators.required],
+        fin: ['', Validators.required],
+        profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+        costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
+        id: [''],
+        horarios: this.fb.array([]),
+      },
+      { validators: this.fechaInicioAntesDeFinValidator }
+    );
   }
 
-
   configureForm() {
-  // Actualiza los valores del item en el formulario
-  this.editForm.patchValue({
-    nombre: this.item.nombre,
-    inicio: this.item.inicio,
-    fin: this.item.fin,
-    profesor: this.item.profesor,
-    costo: this.item.costo,
-    id: this.item.id
-  });
+    // Actualiza los valores del item en el formulario
+    this.editForm.patchValue({
+      nombre: this.item.nombre,
+      inicio: this.item.inicio,
+      fin: this.item.fin,
+      profesor: this.item.profesor,
+      costo: this.item.costo,
+      id: this.item.id,
+     
+    });
+    // Llenar el FormArray de horarios con los datos recibidos
+    this.item.horarios.forEach((horario: any) => {
+      this.agregarHorario(horario);
+    });
+    // Deshabilitar el formulario al principio si está en modo de vista
+    if (!this.modoEdicion) {
+      this.editForm.disable();
+    }
+  }
 
- }
+  agregarHorario(horario?: any) {
+    const horarioGroup = this.fb.group({
+      dia: [horario ? horario.dia : '', Validators.required],
+      horaInicio: [horario ? horario.horaInicio : '', Validators.required],
+      horaFin: [horario ? horario.horaFin : '', Validators.required],
+    });
+    this.horarios.push(horarioGroup);
+  }
 
+  quitarHorario(index: number) {
+    this.horarios.removeAt(index);
+  }
 
-
-
-
-
+  get horarios() {
+    return this.editForm.get('horarios') as FormArray;
+  }
 
   // Define la función de validación personalizada dentro de la clase del componente
   fechaInicioAntesDeFinValidator(formGroup: FormGroup<any>) {
@@ -125,6 +146,16 @@ export class CursosFormComponent implements OnInit {
     }
   }
 
+  cambiarModoEdicion() {
+    this.modoEdicion = !this.modoEdicion;
+
+    // Habilitar o deshabilitar el formulario según el modo de edición
+    if (this.modoEdicion) {
+      this.editForm.enable();
+    } else {
+      this.editForm.disable();
+    }
+  }
   closeModal() {
     const value = {
       op: this.titulo === 'Eliminar' ? this.titulo : this.titulo,
