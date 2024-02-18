@@ -1,5 +1,5 @@
 <!-- <app-horarios-form  [jsonData]="jsonData"></app-horarios-form> -->
-
+<div class="container mt-3">
 <div *ngIf="titulo === 'Profesores'">
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
 </div>
@@ -30,14 +30,15 @@
             <div class="input-group">
               <input
                 formControlName="nombre"
-                class="form-control"
+                class="form-control fs-6"
+         
                 required
                 type="text"
                 [ngClass]="{
                   'is-invalid': nombre?.errors && nombre?.touched,
                   'is-valid': !nombre?.errors && !nombre?.touched
                 }"
-                [disabled]="!modoEdicion"
+ 
               />
             </div>
           </div>
@@ -109,7 +110,7 @@
                   <select
                     class="form-control"
                     formControlName="dia"
-                    [disabled]="!modoEdicion"
+   
                   >
                     <option value="" disabled selected hidden>
                       Selecciona un día
@@ -124,7 +125,7 @@
                     type="time"
                     class="form-control"
                     formControlName="horaInicio"
-                    [disabled]="!modoEdicion"
+    
                   />
                 </div>
                 <div class="col">
@@ -132,7 +133,7 @@
                     type="time"
                     class="form-control"
                     formControlName="horaFin"
-                    [disabled]="!modoEdicion"
+   
                   />
                 </div>
                 <div class="col" *ngIf="modoEdicion">
@@ -180,7 +181,7 @@
                   'is-invalid': Costo?.errors && Costo?.touched,
                   'is-valid': !Costo?.errors && !Costo?.touched
                 }"
-                [disabled]="!modoEdicion"
+      
               />
               <div
                 *ngIf="Costo?.errors && Costo?.touched"
@@ -202,7 +203,7 @@
                 formControlName="id"
                 class="form-control"
                 type="hidden"
-                [disabled]="!modoEdicion"
+   
               />
             </div>
           </div>
@@ -228,4 +229,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

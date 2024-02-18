@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cursos } from 'src/app/interfaces/cursos';
@@ -8,7 +8,9 @@ import Swal from 'sweetalert2';
   selector: 'app-cursos-form',
   templateUrl: './cursos-form.component.html',
   styleUrls: ['./cursos-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class CursosFormComponent implements OnInit {
   @Input() fromParent: any;
   editForm: any;
@@ -73,11 +75,11 @@ export class CursosFormComponent implements OnInit {
   createFormVacio() {
     this.editForm = this.fb.group(
       {
-        nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-        inicio: ['', Validators.required],
-        fin: ['', Validators.required],
-        profesor: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-        costo: ['', Validators.pattern(/^[0-9]{5,10}$/)],
+        nombre: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+        inicio: [{ value: '', disabled: !this.modoEdicion }, Validators.required],
+        fin: [{ value: '', disabled: !this.modoEdicion }, Validators.required],
+        profesor: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
+        costo: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[0-9]{5,10}$/)],
         id: [''],
         horarios: this.fb.array([]),
       },
