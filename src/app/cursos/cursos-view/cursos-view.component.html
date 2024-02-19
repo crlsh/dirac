@@ -88,12 +88,12 @@
                 [name]="alumnos"
               >
               </app-btn-agregar>
-              <app-btn-editar
+              <!-- <app-btn-editar
                 class="right"
                 (click)="msgBack('Editar', item)"
                 class="d-flex align-items-center"
               >
-              </app-btn-editar>
+              </app-btn-editar> -->
 
               <app-btn-eliminar
                 class="right"
@@ -103,8 +103,10 @@
               </app-btn-eliminar>
 
               <app-btn-show
-                class="align-middle"
+              class="right"
+      
                 (click)="msgBack('Mostrar', item)"
+                class="d-flex align-items-center"
               >
               </app-btn-show>
             </td>

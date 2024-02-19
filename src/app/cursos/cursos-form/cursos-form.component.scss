@@ -17,3 +17,12 @@
     cursor: not-allowed;
 }
   
+
+.modal-content {
+    font-size: 1.2rem; /* Ajusta el tamaño de la fuente según sea necesario */
+  }
+  
+  /* Estilo personalizado para el campo de nombre dentro del modal */
+  .modal-content input[name="nombre"] {
+    font-size: 1.5rem; /* Ajusta el tamaño de la fuente según sea necesario */
+  }

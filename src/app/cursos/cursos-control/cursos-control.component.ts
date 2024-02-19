@@ -62,7 +62,7 @@ export class CursosControlComponent implements OnInit {
       const modalRef = this.modalService.open(CursosFormComponent, {
         windowClass: 'myCustomModalClass',
         //  centered: true,
-        size: 'xl',
+        size: 'xs',
       });
 
       let info = {

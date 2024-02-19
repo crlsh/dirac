@@ -42,7 +42,7 @@
               />
             </div>
           </div>
-
+          <h3>Cursado</h3>
           <!-- Inicio - Fin lado a lado  -->
           <td>
             <div class="form-group">
@@ -98,6 +98,9 @@
           </td>
 
           <!-- horarios -->
+          <hr>
+   <h3>Horarios</h3>
+   
           <div formArrayName="horarios">
             <div
               class="form-group"
@@ -142,7 +145,7 @@
                     class="btn btn-danger"
                     (click)="quitarHorario(i)"
                   >
-                    Quitar
+                    X
                   </button>
                 </div>
               </div>
@@ -156,16 +159,19 @@
           >
             Agregar horario
           </button>
-          <button
+          <!-- <button
             type="submit"
             class="btn btn-success mt-3"
             *ngIf="modoEdicion"
           >
             Guardar
-          </button>
+          </button> -->
 
 
           <!-- {{ this.editForm.value | json }} -->
+
+          <hr>
+
           <!-- costos -->
 
           <div class="form-group">
@@ -215,7 +221,7 @@
         class="btn btn-info mt-3"
         (click)="cambiarModoEdicion()"
       >
-        {{ modoEdicion ? "Terminar edición" : "Editar" }}
+        {{ modoEdicion ? "Cancelar" : "Editar" }}
       </button>
         <button
           class="btn btn-success"

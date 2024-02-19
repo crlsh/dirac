@@ -153,6 +153,7 @@ export class CursosFormComponent implements OnInit {
 
     // Habilitar o deshabilitar el formulario según el modo de edición
     if (this.modoEdicion) {
+      this.titulo = 'Editar';
       this.editForm.enable();
     } else {
       this.editForm.disable();
