@@ -4,8 +4,16 @@
   <app-profesores-control [mostrarVista]="true"></app-profesores-control>
 </div>
 
-<div *ngIf="titulo === 'Alumnos'">
-  <app-alumnos-control [mostrarVista]="true"></app-alumnos-control>
+<div *ngIf="titulo === 'Team'">
+  <!-- <app-alumnos-control [mostrarVista]="true"></app-alumnos-control> -->
+  <div *ngIf="titulo === 'Team'">
+    <h3>Lista de Alumnos</h3>
+    <ul>
+      <li *ngFor="let alumno of item.alumnos">
+        <p>{{ alumno.nombre }} {{ alumno.apellido }} - DNI: {{ alumno.dni }}</p>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div *ngIf="titulo !== 'Profesores' && titulo !== 'Alumnos'">

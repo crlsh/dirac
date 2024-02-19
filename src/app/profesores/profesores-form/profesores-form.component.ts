@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profesores } from 'src/app/interfaces/profesores';
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-profesores-form',
   templateUrl: './profesores-form.component.html',
-  styleUrls: ['./profesores-form.component.scss']
+  styleUrls: ['./profesores-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfesoresFormComponent implements OnInit {
 

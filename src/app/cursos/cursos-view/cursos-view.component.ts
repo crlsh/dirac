@@ -61,7 +61,7 @@ export class CursosViewComponent implements OnInit {
   setDataTableOptions() {
     if (this.mostrarVista) {
       this.dtOptions = {
-        // configuración específica para la vista completa
+        // configuración específica para la vista reducida
         // por ejemplo, con búsqueda, con ordenamiento, etc.
         dom: 't<"bottom"riflp><"clear">',
         language: LanguageApp.spanish_datatables,
@@ -77,8 +77,8 @@ export class CursosViewComponent implements OnInit {
         dom: 't<"bottom"riflp><"clear">',
         language: LanguageApp.spanish_datatables,
         columnDefs: [
-          { orderable: false, targets: [5] },
-          { searchable: false, targets: [5] },
+          { orderable: false, targets: [4] },
+          { searchable: false, targets: [4] },
         ],
 
       };

@@ -2,8 +2,14 @@
 
 <div class="container">
 
+  <!-- si mostrar vista es true muestra el modal, sino como componente(usar terminologia mas clara) -->
   <ng-container *ngIf="mostrarVista; else vistaCompleta">
+    <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title">
+       Profesor
+      </h1>
 
+    </div>
     <div class="mt-5">
       <table datatable [dtOptions]="dtOptions" class="display table">
         <thead>

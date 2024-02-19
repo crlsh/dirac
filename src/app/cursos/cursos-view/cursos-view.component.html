@@ -1,6 +1,5 @@
 <div class="container">
   <ng-container *ngIf="mostrarVista; else vistaCompleta">
-   
     <div class="mt-5">
       <table datatable [dtOptions]="dtOptions" class="display table">
         <thead>
@@ -28,11 +27,18 @@
         </tbody>
       </table>
     </div>
-
-
   </ng-container>
-  <ng-template #vistaCompleta>
+  <ng-template #vistaCompleta >
     <div style="float: right" class="pantallasPequenias2">
+      <button
+      class="btn btn-success"
+    
+      [print]="['print-section']"
+   
+    >
+print
+
+    </button>
       <app-btn-ingreso
         class="right"
         (click)="msgBack('Agregar', [])"
@@ -40,7 +46,7 @@
       >
       </app-btn-ingreso>
     </div>
-    <div class="mt-5">
+    <div class="mt-5" id="print-section" >
       <table datatable [dtOptions]="dtOptions" class="display table">
         <thead>
           <tr>
@@ -49,7 +55,7 @@
             <th>Inicio</th>
             <th class="pantallasPequenias2">Fin</th>
             <th class="pantallasPequenias">Profesor</th>
-            <th class="pantallasPequenias2">Costo</th>
+            <!-- <th class="pantallasPequenias2">Costo</th> -->
             <th id="colBtn"></th>
           </tr>
         </thead>
@@ -62,12 +68,17 @@
             <td class="align-middle">{{ item.inicio }}</td>
             <td class="align-middle pantallasPequenias2">{{ item.fin }}</td>
             <td class="align-middle pantallasPequenias">{{ item.profesor }}</td>
-            <td class="align-middle pantallasPequenias2" id="costo">
+            <!-- <td class="align-middle pantallasPequenias2" id="costo">
               {{ item.costo }}
-            </td>
+            </td> -->
 
             <td class="align-middle botones">
-
+              <app-btn-show
+                class="right"
+                (click)="msgBack('Mostrar', item)"
+                class="d-flex align-items-center"
+              >
+              </app-btn-show>
               <!-- <app-btn-agregar
               class="right"
               (click)="msgBack('Horarios', item)"
@@ -75,12 +86,12 @@
             >
             </app-btn-agregar> -->
 
-              <app-btn-agregar
+              <!-- <app-btn-agregar
                 class="right"
                 (click)="msgBack('Profesores', item)"
                 [name]="profesor"
               >
-              </app-btn-agregar>
+              </app-btn-agregar> -->
 
               <app-btn-agregar
                 class="right"
@@ -101,14 +112,6 @@
                 class="d-flex align-items-center"
               >
               </app-btn-eliminar>
-
-              <app-btn-show
-              class="right"
-      
-                (click)="msgBack('Mostrar', item)"
-                class="d-flex align-items-center"
-              >
-              </app-btn-show>
             </td>
           </tr>
         </tbody>

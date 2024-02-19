@@ -1,33 +1,27 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
-import { EstadoCajaService } from 'src/app/servicios/caja/estado-caja.service';
+
 import { StorageService } from 'src/app/servicios/storage/storage.service';
 import { ProfesoresFormComponent } from '../profesores-form/profesores-form.component';
-
 
 @Component({
   selector: 'app-profesores-control',
   template: `
+    <app-profesores-view
+      [data]="data$"
+      [mostrarVista]="mostrarVista"
+      (newItemEvent)="getMsg($event)"
+    ></app-profesores-view>
+  `,
 
-
-  <app-profesores-view
-    [data]="data$"
-    [mostrarVista]="mostrarVista"
-    (newItemEvent)="getMsg($event)"
-  ></app-profesores-view>
-`,
-
-  styleUrls: ['./profesores-control.component.scss']
+  styleUrls: ['./profesores-control.component.scss'],
 })
 export class ProfesoresControlComponent implements OnInit {
-
-
   componente: string = 'profesores';
   data$!: any;
   $modoCaja: any;
 
- 
   @Input() mostrarVista: boolean = false;
   mensaje: string = 'Mensaje predeterminado';
 
@@ -42,18 +36,14 @@ export class ProfesoresControlComponent implements OnInit {
     this.mensaje = valor ? 'Mostrando vista' : 'No mostrando vista';
   }
 
-
-
   constructor(
     private modalService: NgbModal,
-    private fb: FormBuilder,
-    private storage: StorageService,
-    private estadoCaja: EstadoCajaService
+
+    private storage: StorageService
   ) {}
 
   ngOnInit(): void {
     this.data$ = this.storage.profesores$;
-
   }
 
   getMsg(msg: any) {
@@ -65,7 +55,7 @@ export class ProfesoresControlComponent implements OnInit {
     {
       const modalRef = this.modalService.open(ProfesoresFormComponent, {
         windowClass: 'myCustomModalClass',
-      /*   centered: true,
+        /*   centered: true,
         size: 'lg', */
       });
 
@@ -77,7 +67,6 @@ export class ProfesoresControlComponent implements OnInit {
       modalRef.componentInstance.fromParent = info;
       modalRef.result.then(
         (result) => {
-
           this.selectCrudOp(result.op, result.item);
         },
         (reason) => {}
@@ -112,7 +101,6 @@ export class ProfesoresControlComponent implements OnInit {
         break;
       }
       case 'Vehiculo Editar': {
-        
         //console.log("vehiculo editar", item)
         this.storage.updateItem('vehiculos', item);
         break;
@@ -134,6 +122,3 @@ export class ProfesoresControlComponent implements OnInit {
     }
   }
 }
-
-
-
