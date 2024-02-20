@@ -12,6 +12,7 @@ export interface Horario {
 
 export interface Cursos {
     alumnos: any[];
+    profesores:any[];
     id: string;
     nombre: string;
     inicio: Date;

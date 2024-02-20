@@ -1,173 +1,189 @@
 <!-- <app-horarios-form  [jsonData]="jsonData"></app-horarios-form> -->
 <div class="container mt-3">
-<div *ngIf="titulo === 'Profesores'">
-  <app-profesores-control [mostrarVista]="true"></app-profesores-control>
-</div>
+  <!-- <div *ngIf="titulo === 'Profesores'">
+    <app-profesores-control [mostrarVista]="true"></app-profesores-control>
+  </div> -->
 
-<div *ngIf="titulo === 'Team'">
-  <!-- <app-alumnos-control [mostrarVista]="true"></app-alumnos-control> -->
-  <div *ngIf="titulo === 'Team'">
-    <h3>Lista de Alumnos</h3>
-    <ul>
-      <li *ngFor="let alumno of item.alumnos">
-        <p>{{ alumno.nombre }} {{ alumno.apellido }} - DNI: {{ alumno.dni }}</p>
-      </li>
-    </ul>
-  </div>
-</div>
+  <div *ngIf="titulo === 'Alumnos'">
+    <!-- <app-alumnos-control [mostrarVista]="true"></app-alumnos-control> -->
 
-<div *ngIf="titulo !== 'Profesores' && titulo !== 'Alumnos'">
-  <div class="modal-header">
-    <h1 class="modal-title" id="modal-basic-title">{{ titulo }} Curso</h1>
-    <button
-      type="button"
-      class="close btn btn-primary"
-      (click)="activeModal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <div class="modal-header">
+      <h3>Listado de Alumnos</h3>
+    </div>
+    <div class="modal-body">
+      <table datatable  class="display table">
+      
+  
+          <thead>
+            <tr>
+              <th>DNI</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+           
+            </tr>
+          </thead>
+          <tbody *ngFor="let alumno of item.alumnos">
+          <tr>
+            <td>{{ alumno.dni }}</td>
+            <td>{{ alumno.nombre }} </td> 
+            <td>{{ alumno.apellido }}</td>
+          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info mt-3">Imprimir</button>
+      <button class="btn btn-success">
+        Cerrar
+        <!-- {{ titulo }} -->
+      </button>
+    </div>
   </div>
-  <!-- <div class="modal-body"> -->
+
+  <div *ngIf="titulo !== 'Alumnos'">
+    <div class="modal-header">
+      <h1 class="modal-title" id="modal-basic-title">{{ titulo }} Curso</h1>
+      <button
+        type="button"
+        class="close btn btn-primary"
+        (click)="activeModal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- <div class="modal-body"> -->
     <div>
-
-    <div class="container">
-      <div class="modal-body">
-        <form [formGroup]="editForm" novalidate>
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <div class="input-group">
-              <input
-                formControlName="nombre"
-                class="form-control fs-6"
-         
-                required
-                type="text"
-                [ngClass]="{
-                  'is-invalid': nombre?.errors && nombre?.touched,
-                  'is-valid': !nombre?.errors && !nombre?.touched
-                }"
- 
-              />
-            </div>
-          </div>
-          <h3>Cursado</h3>
-          <!-- Inicio - Fin lado a lado  -->
-          <td>
+      <div class="container">
+        <div class="modal-body">
+          <form [formGroup]="editForm" novalidate>
             <div class="form-group">
-              <label for="inicio">Inicio</label>
+              <label for="nombre">Nombre</label>
               <div class="input-group">
                 <input
-                  formControlName="inicio"
-                  class="form-control"
+                  formControlName="nombre"
+                  class="form-control fs-6"
                   required
-                  type="date"
+                  type="text"
+                  [ngClass]="{
+                    'is-invalid': nombre?.errors && nombre?.touched,
+                    'is-valid': !nombre?.errors && !nombre?.touched
+                  }"
                 />
               </div>
-              <!-- Agrega un div para mostrar el mensaje de error -->
-              <div
-                *ngIf="Inicio?.errors && Inicio?.touched"
-                class="text-danger fs-6"
-                style="margin-top: 0.25rem"
-              >
-                <p *ngIf="Inicio?.errors?.required">
-                  La fecha de inicio es requerida.
-                </p>
-                <p *ngIf="Inicio?.errors?.fechaInvalida">
-                  La fecha de inicio debe ser anterior a la de fin.
-                </p>
-              </div>
             </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <label for="fin">Fin</label>
-              <div class="input-group">
-                <input
-                  formControlName="fin"
-                  class="form-control"
-                  required
-                  type="date"
-                />
+            <h3>Periodo</h3>
+            <!-- Inicio - Fin lado a lado  -->
+            <td>
+              <div class="form-group">
+                <label for="inicio">Inicio</label>
+                <div class="input-group">
+                  <input
+                    formControlName="inicio"
+                    class="form-control"
+                    required
+                    type="date"
+                  />
+                </div>
+                <!-- Agrega un div para mostrar el mensaje de error -->
+                <div
+                  *ngIf="Inicio?.errors && Inicio?.touched"
+                  class="text-danger fs-6"
+                  style="margin-top: 0.25rem"
+                >
+                  <p *ngIf="Inicio?.errors?.required">
+                    La fecha de inicio es requerida.
+                  </p>
+                  <p *ngIf="Inicio?.errors?.fechaInvalida">
+                    La fecha de inicio debe ser anterior a la de fin.
+                  </p>
+                </div>
               </div>
-              <!-- Agrega un div para mostrar el mensaje de error -->
-              <div
-                *ngIf="Fin?.errors && Fin?.touched"
-                class="text-danger fs-6"
-                style="margin-top: 0.25rem"
-              >
-                <p *ngIf="Fin?.errors?.required">
-                  La fecha de fin es requerida.
-                </p>
-                <p *ngIf="Fin?.errors?.fechaInvalida">
-                  La fecha de fin debe ser posterior a la de inicio.
-                </p>
+            </td>
+            <td>
+              <div class="form-group">
+                <label for="fin">Fin</label>
+                <div class="input-group">
+                  <input
+                    formControlName="fin"
+                    class="form-control"
+                    required
+                    type="date"
+                  />
+                </div>
+                <!-- Agrega un div para mostrar el mensaje de error -->
+                <div
+                  *ngIf="Fin?.errors && Fin?.touched"
+                  class="text-danger fs-6"
+                  style="margin-top: 0.25rem"
+                >
+                  <p *ngIf="Fin?.errors?.required">
+                    La fecha de fin es requerida.
+                  </p>
+                  <p *ngIf="Fin?.errors?.fechaInvalida">
+                    La fecha de fin debe ser posterior a la de inicio.
+                  </p>
+                </div>
               </div>
-            </div>
-          </td>
+            </td>
 
-          <!-- horarios -->
-          <hr>
-   <h3>Horarios</h3>
-   
-          <div formArrayName="horarios">
-            <div
-              class="form-group"
-              *ngFor="let horario of horarios.controls; let i = index"
-              [formGroupName]="i"
+            <!-- horarios -->
+            <hr />
+            <h3>Horarios</h3>
+
+            <div formArrayName="horarios">
+              <div
+                class="form-group"
+                *ngFor="let horario of horarios.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <label>Horario {{ i + 1 }}</label>
+                <div class="row">
+                  <div class="col">
+                    <select class="form-control" formControlName="dia">
+                      <option value="" disabled selected hidden>
+                        Selecciona un día
+                      </option>
+                      <option *ngFor="let dia of diasSemana" [value]="dia">
+                        {{ dia }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="time"
+                      class="form-control"
+                      formControlName="horaInicio"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="time"
+                      class="form-control"
+                      formControlName="horaFin"
+                    />
+                  </div>
+                  <div class="col" *ngIf="modoEdicion">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="quitarHorario(i)"
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary mt-3"
+              (click)="agregarHorario()"
+              *ngIf="modoEdicion"
             >
-              <label>Horario {{ i + 1 }}</label>
-              <div class="row">
-                <div class="col">
-                  <select
-                    class="form-control"
-                    formControlName="dia"
-   
-                  >
-                    <option value="" disabled selected hidden>
-                      Selecciona un día
-                    </option>
-                    <option *ngFor="let dia of diasSemana" [value]="dia">
-                      {{ dia }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col">
-                  <input
-                    type="time"
-                    class="form-control"
-                    formControlName="horaInicio"
-    
-                  />
-                </div>
-                <div class="col">
-                  <input
-                    type="time"
-                    class="form-control"
-                    formControlName="horaFin"
-   
-                  />
-                </div>
-                <div class="col" *ngIf="modoEdicion">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    (click)="quitarHorario(i)"
-                  >
-                    X
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            type="button"
-            class="btn btn-primary mt-3"
-            (click)="agregarHorario()"
-            *ngIf="modoEdicion"
-          >
-            Agregar horario
-          </button>
-          <!-- <button
+              Agregar horario
+            </button>
+            <!-- <button
             type="submit"
             class="btn btn-success mt-3"
             *ngIf="modoEdicion"
@@ -175,73 +191,97 @@
             Guardar
           </button> -->
 
+            <!-- {{ this.editForm.value | json }} -->
 
-          <!-- {{ this.editForm.value | json }} -->
+            <hr />
 
-          <hr>
+            <!-- costos -->
 
-          <!-- costos -->
-
-          <div class="form-group">
-            <label for="Costo">Costo</label>
-            <div class="input-group">
-              <input
-                formControlName="costo"
-                class="form-control"
-                required
-                type="costo"
-                placeholder="example@example.com"
-                [ngClass]="{
-                  'is-invalid': Costo?.errors && Costo?.touched,
-                  'is-valid': !Costo?.errors && !Costo?.touched
-                }"
-      
-              />
-              <div
-                *ngIf="Costo?.errors && Costo?.touched"
-                class="text-danger fs-6"
-              >
-                <p *ngIf="Costo?.hasError('required')">
-                  El costo es requerido.
-                </p>
-                <p *ngIf="Costo?.hasError('costo')">
-                  El formato debe ser válido.
-                </p>
+            <div class="form-group">
+              <label for="Costo">Costo</label>
+              <div class="input-group">
+                <input
+                  formControlName="costo"
+                  class="form-control"
+                  required
+                  type="costo"
+                  placeholder="example@example.com"
+                  [ngClass]="{
+                    'is-invalid': Costo?.errors && Costo?.touched,
+                    'is-valid': !Costo?.errors && !Costo?.touched
+                  }"
+                />
+                <div
+                  *ngIf="Costo?.errors && Costo?.touched"
+                  class="text-danger fs-6"
+                >
+                  <p *ngIf="Costo?.hasError('required')">
+                    El costo es requerido.
+                  </p>
+                  <p *ngIf="Costo?.hasError('costo')">
+                    El formato debe ser válido.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <div class="input-group">
-              <input
-                formControlName="id"
-                class="form-control"
-                type="hidden"
-   
-              />
+            <div class="form-group">
+              <div class="input-group">
+                <input
+                  formControlName="id"
+                  class="form-control"
+                  type="hidden"
+                />
+              </div>
+            </div>
+          </form>
+          <div>
+            <div class="modal-header">
+              <h3>Profesores</h3>
+            </div>
+            <div class="modal-body">
+              <table datatable  class="display table">
+              
+          
+                  <thead>
+                    <tr>
+                      <th>DNI</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                   
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let profesor of item.profesores">
+                  <tr>
+                    <td>{{ profesor.dni }}</td>
+                    <td>{{ profesor.nombre }} </td> 
+                    <td>{{ profesor.apellido }}</td>
+                  
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-        type="button"
-        class="btn btn-info mt-3"
-        (click)="cambiarModoEdicion()"
-      >
-        {{ modoEdicion ? "Cancelar" : "Editar" }}
-      </button>
-        <button
-          class="btn btn-success"
-          *ngIf="modoEdicion"
-          [disabled]="editForm.invalid"
-          (click)="guardarDatos()"
-        >
-        Grabar
-          <!-- {{ titulo }} -->
-        </button>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-info mt-3"
+            (click)="cambiarModoEdicion()"
+          >
+            {{ modoEdicion ? "Cancelar" : "Editar" }}
+          </button>
+          <button
+            class="btn btn-success"
+            *ngIf="modoEdicion"
+            [disabled]="editForm.invalid"
+            (click)="guardarDatos()"
+          >
+            Grabar
+            <!-- {{ titulo }} -->
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
