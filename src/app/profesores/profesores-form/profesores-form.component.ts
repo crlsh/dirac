@@ -62,7 +62,7 @@ export class ProfesoresFormComponent implements OnInit {
       nombre: item.nombre,
       telefono: item.telefono,
       direccion: item.direccion,
-      comentario: item.comentario,
+      dni: item.dni,
       email: item.email,
       id: item.id,
     });
@@ -74,7 +74,7 @@ export class ProfesoresFormComponent implements OnInit {
       nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
       telefono: ['', Validators.pattern(/^[0-9]{5,10}$/)],
       direccion: [''],
-      comentario: [''],
+      dni: [''],
       email: ['', [Validators.required, Validators.email]],
       id: [''],
     });

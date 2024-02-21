@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Alumnos } from 'src/app/interfaces/alumnos';
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-alumnos-form',
   templateUrl: './alumnos-form.component.html',
-  styleUrls: ['./alumnos-form.component.scss']
+  styleUrls: ['./alumnos-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlumnosFormComponent implements OnInit {
   @Input() fromParent: any;
@@ -60,7 +61,7 @@ export class AlumnosFormComponent implements OnInit {
       nombre: item.nombre,
       telefono: item.telefono,
       direccion: item.direccion,
-      comentario: item.comentario,
+      dni: item.dni,
       email: item.email,
       id: item.id,
     });
@@ -72,7 +73,7 @@ export class AlumnosFormComponent implements OnInit {
       nombre: ['', Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
       telefono: ['', Validators.pattern(/^[0-9]{5,10}$/)],
       direccion: [''],
-      comentario: [''],
+      dni: [''],
       email: ['', [Validators.required, Validators.email]],
       id: [''],
     });

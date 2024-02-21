@@ -9,25 +9,28 @@
 
     <div class="modal-header">
       <h3>Listado de Alumnos</h3>
+      <button
+      type="button"
+      class="close btn btn-primary"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
     </div>
     <div class="modal-body">
-      <table datatable  class="display table">
-      
-  
-          <thead>
-            <tr>
-              <th>DNI</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-           
-            </tr>
-          </thead>
-          <tbody *ngFor="let alumno of item.alumnos">
+      <table datatable class="display table">
+        <thead>
+          <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let alumno of item.alumnos">
           <tr>
             <td>{{ alumno.dni }}</td>
-            <td>{{ alumno.nombre }} </td> 
+            <td>{{ alumno.nombre }}</td>
             <td>{{ alumno.apellido }}</td>
-          
           </tr>
         </tbody>
       </table>
@@ -72,7 +75,9 @@
                 />
               </div>
             </div>
-            <h3>Periodo</h3>
+            <div class="modal-header">
+              <h3>Periodo</h3>
+            </div>
             <!-- Inicio - Fin lado a lado  -->
             <td>
               <div class="form-group">
@@ -128,8 +133,10 @@
             </td>
 
             <!-- horarios -->
-            <hr />
-            <h3>Horarios</h3>
+     
+            <div class="modal-header">
+              <h3>Horarios</h3>
+            </div>
 
             <div formArrayName="horarios">
               <div
@@ -240,23 +247,19 @@
               <h3>Profesores</h3>
             </div>
             <div class="modal-body">
-              <table datatable  class="display table">
-              
-          
-                  <thead>
-                    <tr>
-                      <th>DNI</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                   
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let profesor of item.profesores">
+              <table datatable class="display table">
+                <thead>
+                  <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let profesor of item.profesores">
                   <tr>
                     <td>{{ profesor.dni }}</td>
-                    <td>{{ profesor.nombre }} </td> 
+                    <td>{{ profesor.nombre }}</td>
                     <td>{{ profesor.apellido }}</td>
-                  
                   </tr>
                 </tbody>
               </table>

@@ -6,4 +6,5 @@ export interface Profesores {
     direccion: string;
     email: string ;
     comentario: string;
+    cursos:any[]
   }

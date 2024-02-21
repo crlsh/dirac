@@ -48,12 +48,13 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th >Dni</th>
             <th>Apellido</th>
             <th>Nombre</th>
             <th class="pantallasPequenias2">telefono</th>
             <th class="pantallasPequenias">Direccion</th>
             <th class="pantallasPequenias2">email</th>
-            <th class="pantallasPequenias">Comentario</th>
+
             <th id="colBtn"></th>
             <!--   <th></th>
             <th ></th> -->
@@ -65,6 +66,9 @@
             <td class="badge text-center align-middlee" scope="row">
               {{ i + 1 }}
             </td>
+            <td class="align-middle pantallasPequenias" id="dni">
+              {{ item.dni }}
+            </td>
             <td class="align-middle">{{ item.apellido }}</td>
             <td class="align-middle">{{ item.nombre }}</td>
             <td class="align-middle pantallasPequenias2">{{ item.telefono }}</td>
@@ -72,9 +76,7 @@
             <td class="align-middle pantallasPequenias2" id="correo">
               {{ item.email }}
             </td>
-            <td class="align-middle pantallasPequenias" id="comentario">
-              {{ item.comentario }}
-            </td>
+    
 
             <td class="align-middle botones">
               <!--             

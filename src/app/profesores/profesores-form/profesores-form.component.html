@@ -1,6 +1,42 @@
 <div *ngIf="titulo === 'Cursos'; else profesores">
-  <app-cursos-control [mostrarVista]="true"></app-cursos-control>
+
+  <div class="modal-header">
+    <h3>Cursos Asignados</h3>
+    <button
+      type="button"
+      class="close btn btn-primary"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table datatable class="display table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+   
+        </tr>
+      </thead>
+      <tbody *ngFor="let curso of item.cursos">
+        <tr>
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nombre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info mt-3">Imprimir</button>
+    <button class="btn btn-success">
+      Cerrar
+      <!-- {{ titulo }} -->
+    </button>
+  </div>
 </div>
+
+
 
 <ng-template #profesores>
   <div class="modal-header">
@@ -51,7 +87,18 @@
               />
             </div>
           </div>
-
+          <div class="form-group">
+            <label for="Dni">Dni</label>
+            <div class="input-group">
+              <input
+                formControlName="dni"
+                class="form-control"
+                type="text"
+                [ngClass]="{ isDisabled: soloVista }"
+              />
+            </div>
+          </div>
+ 
           <div class="form-group">
             <label for="Telefono">Telefono</label>
             <div class="input-group">
@@ -109,17 +156,6 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="Comentario">Comentario</label>
-            <div class="input-group">
-              <input
-                formControlName="comentario"
-                class="form-control"
-                type="text"
-                [ngClass]="{ isDisabled: soloVista }"
-              />
-            </div>
-          </div>
 
    
           <div class="form-group">
