@@ -5,12 +5,9 @@ import { ForgotPasswordComponent } from './appLogin/forgot-password/forgot-passw
 import { LoginComponent } from './appLogin/login/login.component';
 import { SignUpComponent } from './appLogin/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './appLogin/verify-email/verify-email.component';
-import { CajaControlComponent } from './caja/caja-control/caja-control.component';
-import { CajaLogComponent } from './caja/caja-log/caja-log.component';
-import { ClientesControlComponent } from './clientes/clientes-control/clientes-control.component';
+
 import { AlumnosControlComponent } from './alumnos/alumnos-control/alumnos-control.component';
 
-import { FacturacionControlComponent } from './facturacion/facturacion-control/facturacion-control.component';
 import { IsSuperAdminGuard } from './guards/is-super-admin.guard';
 import { HomeComponent } from './home/home.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -19,10 +16,9 @@ import { LogsComponent } from './logs/logs.component';
 import { OcupacionComponent } from './ocupacion/ocupacion.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
-import { PlayaControlComponent } from './playa/playa-control/playa-control.component';
-import { TarifasControlComponent } from './tarifas/tarifas-control/tarifas-control.component';
+
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { ListadoVehiculosComponent } from './vehiculos/listado-vehiculos/listado-vehiculos.component';
+
 import { ContactoComponent } from './contacto/contacto.component';
 import { ProfesoresControlComponent } from './profesores/profesores-control/profesores-control.component';
 import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
@@ -52,16 +48,8 @@ const appRoutes: Routes = [
         redirectTo: 'calendario',
         pathMatch: 'full',
       },
-      {
-        path: 'playa',
-        component: PlayaControlComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
-      {
-        path: 'facturacion',
-        component: FacturacionControlComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
+ 
+
       // {
       //   path: 'caja',
       //   component: CajaControlComponent,
@@ -73,16 +61,8 @@ const appRoutes: Routes = [
         component: CalendarComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
-      {
-        path: 'tarifas',
-        component: TarifasControlComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
-      {
-        path: 'clientes',
-        component: ClientesControlComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
+
+  
       {
         path: 'alumnos',
         component: AlumnosControlComponent,
@@ -122,17 +102,8 @@ const appRoutes: Routes = [
         component: PerfilEmpresaComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
-      {
-        path: 'vehiculos',
-        component: ListadoVehiculosComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-        canActivate:[IsSuperAdminGuard], 
-      },
-      {
-        path: 'cajaLog',
-        component: CajaLogComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
+  
+
       {
         path: 'usuarios',
         component: UsuariosComponent,

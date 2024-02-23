@@ -31,7 +31,7 @@ export class InicioComponent implements OnInit {
   ) {
     config.autoClose = 'outside'; // Configuración para cerrar el popover al hacer clic fuera de él
     this.$modoCaja = this.estadoCaja.getModoCaja();
-    this.storageService.playa$.subscribe((data) => (this.playa$ = data));
+
     this.createForm()
   }
 

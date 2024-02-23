@@ -28,17 +28,9 @@
       </table>
     </div>
   </ng-container>
-  <ng-template #vistaCompleta >
+  <ng-template #vistaCompleta>
     <div style="float: right" class="pantallasPequenias2">
-      <button
-      class="btn btn-success"
-    
-      [print]="['print-section']"
-   
-    >
-print
-
-    </button>
+      <button class="btn btn-success" [print]="['print-section']">print</button>
       <app-btn-ingreso
         class="right"
         (click)="msgBack('Agregar', [])"
@@ -46,7 +38,7 @@ print
       >
       </app-btn-ingreso>
     </div>
-    <div class="mt-5" id="print-section" >
+    <div class="mt-5" id="print-section">
       <table datatable [dtOptions]="dtOptions" class="display table">
         <thead>
           <tr>

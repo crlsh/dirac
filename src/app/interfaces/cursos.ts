@@ -20,5 +20,7 @@ export interface Cursos {
     profesor: string;
     costo: string ;
     horarios: Horario[];
+    alumnosId:any[],
+    profesoresId:any[],
    
   }

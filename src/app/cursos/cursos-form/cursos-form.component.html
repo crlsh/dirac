@@ -18,6 +18,8 @@
     </button>
     </div>
     <div class="modal-body">
+      {{item.alumnosId |json}}
+      {{alumnos$ |async |json}}
       <table datatable class="display table">
         <thead>
           <tr>

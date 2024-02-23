@@ -20,17 +20,17 @@ export class StorageService {
 
   // Observables //
 
-  private _playa$ = new BehaviorSubject<any>(null); //aca va interface my data
-  public playa$ = this._playa$.asObservable();
+  // private _playa$ = new BehaviorSubject<any>(null); //aca va interface my data
+  // public playa$ = this._playa$.asObservable();
 
-  private _tarifas$ = new BehaviorSubject<any>(null); //aca va interface my data
-  public tarifas$ = this._tarifas$.asObservable();
+  // private _tarifas$ = new BehaviorSubject<any>(null); //aca va interface my data
+  // public tarifas$ = this._tarifas$.asObservable();
 
   private _usuario$ = new BehaviorSubject<any>(null); //aca va interface my data
   public usuario$ = this._usuario$.asObservable();
 
-  private _clientes$ = new BehaviorSubject<any>(null); //aca va interface my data
-  public clientes$ = this._clientes$.asObservable();
+  // private _clientes$ = new BehaviorSubject<any>(null); //aca va interface my data
+  // public clientes$ = this._clientes$.asObservable();
 
   private _alumnos$ = new BehaviorSubject<any>(null); //aca va interface my data
   public alumnos$ = this._alumnos$.asObservable();
@@ -41,11 +41,11 @@ export class StorageService {
   private _cursos$ = new BehaviorSubject<any>(null); //aca va interface my data
   public cursos$ = this._cursos$.asObservable();
 
-  private _cajaLog$ = new BehaviorSubject<any>(null); //aca va interface my data
-  public cajaLog$ = this._cajaLog$.asObservable();
+  // private _cajaLog$ = new BehaviorSubject<any>(null); //aca va interface my data
+  // public cajaLog$ = this._cajaLog$.asObservable();
 
-  private _facturacion$ = new BehaviorSubject<any>(null); //aca va interface my data
-  public facturacion$ = this._facturacion$.asObservable();
+  // private _facturacion$ = new BehaviorSubject<any>(null); //aca va interface my data
+  // public facturacion$ = this._facturacion$.asObservable();
 
   private _logger$ = new BehaviorSubject<any>(null); //aca va interface my data
   public logger$ = this._logger$.asObservable();
@@ -58,23 +58,23 @@ export class StorageService {
 
   updateObservable(componente: any, data: any) {
     switch (componente) {
-      case 'playa': {
-        this._playa$.next(data);
-        break;
-      }
-      case 'tarifas': {
-        this._tarifas$.next(data);
-        break;
-      }
+      // case 'playa': {
+      //   this._playa$.next(data);
+      //   break;
+      // }
+      // case 'tarifas': {
+      //   this._tarifas$.next(data);
+      //   break;
+      // }
       case 'usuario': {
         this._usuario$.next(data);
         break;
       }
 
-      case 'clientes': {
-        this._clientes$.next(data);
-        break;
-      }
+      // case 'clientes': {
+      //   this._clientes$.next(data);
+      //   break;
+      // }
 
       case 'alumnos': {
         this._alumnos$.next(data);
@@ -91,15 +91,15 @@ export class StorageService {
         break;
       }
 
-      case 'cajaLog': {
-        this._cajaLog$.next(data);
-        break;
-      }
+      // case 'cajaLog': {
+      //   this._cajaLog$.next(data);
+      //   break;
+      // }
 
-      case 'facturacion': {
-        this._facturacion$.next(data);
-        break;
-      }
+      // case 'facturacion': {
+      //   this._facturacion$.next(data);
+      //   break;
+      // }
 
       case 'logger': {
         this._logger$.next(data);
@@ -143,7 +143,7 @@ export class StorageService {
 
   clearAllLocalStorage() {
     localStorage.clear();
-    this._playa$.next(null);
+    // this._playa$.next(null);
   }
 
   ////   INITIALIZER     ////////

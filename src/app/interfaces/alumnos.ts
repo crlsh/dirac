@@ -6,6 +6,7 @@ export interface Alumnos {
     direccion: string;
     email: string ;
     dni: string;
-    cursos:any[]
+    cursos:any[],
+
 
   }

@@ -29,7 +29,7 @@ export class GetInfoService {
     private estadoCajaService: EstadoCajaService
   ) {
     this.storageService.usuario$.subscribe((data) => (this.user$ = data)),
-      this.storageService.playa$.subscribe((data) => (this.playa$ = data)),
+   
       this.estadoCajaService.sesionCaja$.subscribe(
         (data) => (this.sesionCaja$ = data)
       );

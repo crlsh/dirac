@@ -1,16 +1,21 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cursos } from 'src/app/interfaces/cursos';
 import Swal from 'sweetalert2';
+import { StorageService } from 'src/app/servicios/storage/storage.service';
 
 @Component({
   selector: 'app-cursos-form',
   templateUrl: './cursos-form.component.html',
   styleUrls: ['./cursos-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class CursosFormComponent implements OnInit {
   @Input() fromParent: any;
   editForm: any;
@@ -26,35 +31,19 @@ export class CursosFormComponent implements OnInit {
     'Domingo',
   ];
   modoEdicion = false; // Variable para controlar el modo de vista del formulario
-
-  // jsonData = {
-  //   "nombre": "Curso de Angular",
-  //   "horarios": [
-  //     {
-  //       "dia": "Lunes",
-  //       "horaInicio": "08:00",
-  //       "horaFin": "10:00"
-  //     },
-  //     {
-  //       "dia": "Miércoles",
-  //       "horaInicio": "14:30",
-  //       "horaFin": "16:30"
-  //     }
-  //   ]
-  // };
-
-  jsonData = {
-    nombre: 'Curso de Angular',
-    horarios: [],
-  };
-
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {}
+  alumnos$!: any;
+  constructor(
+    public activeModal: NgbActiveModal,
+    private fb: FormBuilder,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.createFormVacio();
     this.titulo = this.fromParent.modo;
     this.item = this.fromParent.item;
     this.handleTitle(this.titulo);
+    this.alumnos$ = this.storage.alumnos$;
   }
 
   handleTitle(titulo: string) {
@@ -75,11 +64,23 @@ export class CursosFormComponent implements OnInit {
   createFormVacio() {
     this.editForm = this.fb.group(
       {
-        nombre: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-        inicio: [{ value: '', disabled: !this.modoEdicion }, Validators.required],
+        nombre: [
+          { value: '', disabled: !this.modoEdicion },
+          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
+        ],
+        inicio: [
+          { value: '', disabled: !this.modoEdicion },
+          Validators.required,
+        ],
         fin: [{ value: '', disabled: !this.modoEdicion }, Validators.required],
-        profesor: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)],
-        costo: [{ value: '', disabled: !this.modoEdicion }, Validators.pattern(/^[0-9]{5,10}$/)],
+        profesor: [
+          { value: '', disabled: !this.modoEdicion },
+          Validators.pattern(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/),
+        ],
+        costo: [
+          { value: '', disabled: !this.modoEdicion },
+          Validators.pattern(/^[0-9]{5,10}$/),
+        ],
         id: [''],
         horarios: this.fb.array([]),
       },
@@ -96,7 +97,6 @@ export class CursosFormComponent implements OnInit {
       profesor: this.item.profesor,
       costo: this.item.costo,
       id: this.item.id,
-     
     });
     // Llenar el FormArray de horarios con los datos recibidos
     this.item.horarios.forEach((horario: any) => {
