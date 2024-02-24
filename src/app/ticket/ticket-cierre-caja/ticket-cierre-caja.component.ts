@@ -10,6 +10,6 @@ export class TicketCierreCajaComponent implements OnInit {
   constructor(public getInfo: GetInfoService) {}
 
   ngOnInit(): void {
-    this.getInfo.getCierreCaja();
+
   }
 }

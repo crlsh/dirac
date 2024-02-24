@@ -155,15 +155,9 @@ export class DbFirestoreService {
     return docData(estacionamiento1DocumentReference, { idField: 'id' });
   }
 
-  crearNuevaSesionCaja(nuevaSesionCaja: any) {
-    let dataCollection = `/${this.coleccion}/datos/${'cajaLog'}`;
-    /* let nuevaSesionId = this.firestore2.createId(); */
 
-    return this.firestore2
-      .collection<any>(dataCollection)
-      .doc(nuevaSesionCaja.sesionId)
-      .set(nuevaSesionCaja);
-  }
+
+
 
   create(componente: string, item: any) {
     let dataCollection = collection(

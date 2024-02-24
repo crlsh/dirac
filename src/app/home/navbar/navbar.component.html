@@ -1,15 +1,5 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
-
   <div class="container-fluid">
-   <!--  <a class="navbar-brand">Logo</a> -->
-   <!--  <button
-      type="button"
-      class="navbar-toggler"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarCollapse"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div
       id="navbarCollapse"
       class="collapse navbar-collapse"
@@ -17,13 +7,6 @@
     >
       <ul class="nav navbar-nav">
         <li class="nav-item align-middle">
-          <!-- <a
-            routerLink="./playa"
-            routerLinkActive="active"
-            class="nav-link align-middle"
-            ariaCurrentWhenActive="page"
-            >Playa</a
-          > -->
           <a
             routerLink="./calendario"
             routerLinkActive="active"
@@ -31,17 +14,7 @@
             ariaCurrentWhenActive="page"
             >Calendario</a
           >
-
         </li>
-        <!-- <li class="nav-item">
-          <a
-            routerLink="./caja"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            class="nav-link align-middle"
-            >Caja</a
-          >
-        </li> -->
 
         <li class="nav-item">
           <a
@@ -62,27 +35,6 @@
           >
         </li>
 
-        <!-- <li class="nav-item">
-          <a
-            routerLink="./tarifas"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            class="nav-link align-middle"
-            >Tarifas</a
-          >
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a
-            routerLink="./clientes"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            class="nav-link align-middle"
-            >Clientes</a
-          >
-        </li> -->
-
-        
         <li class="nav-item">
           <a
             routerLink="./alumnos"
@@ -93,17 +45,13 @@
           >
         </li>
 
-
-
-
-
         <li
           class="nav-item pantallasPequenias"
           ngbDropdown
           *ngIf="!user$.source._value.roles.user"
         >
           <a
-          class="nav-link align-middle"
+            class="nav-link align-middle"
             tabindex="0"
             ngbDropdownToggle
             id="navbarDropdown2"
@@ -132,22 +80,15 @@
               ariaCurrentWhenActive="page"
               >Facturacion</a
             >
+
             <a
               ngbDropdownItem
               href="#"
-              routerLink="./cajaLog"
+              routerLink="./vehiculos"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
-              >Historial Caja</a
+              >Vehiculos Clientes</a
             >
-            <a
-            ngbDropdownItem
-            href="#"
-            routerLink="./vehiculos"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >Vehiculos Clientes</a
-          >
             <a
               ngbDropdownItem
               href="#"
@@ -176,7 +117,6 @@
           </div>
         </li>
       </ul>
-     
     </div>
     <ul class="nav navbar-nav ms-auto">
       <app-logout></app-logout>

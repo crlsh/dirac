@@ -20,7 +20,7 @@ import { ProfesoresFormComponent } from '../profesores-form/profesores-form.comp
 export class ProfesoresControlComponent implements OnInit {
   componente: string = 'profesores';
   data$!: any;
-  $modoCaja: any;
+
 
   @Input() mostrarVista: boolean = false;
   mensaje: string = 'Mensaje predeterminado';

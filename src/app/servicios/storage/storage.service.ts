@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DbFirestoreService } from '../database/db-firestore.service';
-// import { CajaStorageService } from './caja-storage.service';
+
 
 
 @Injectable({
@@ -41,11 +41,6 @@ export class StorageService {
   private _cursos$ = new BehaviorSubject<any>(null); //aca va interface my data
   public cursos$ = this._cursos$.asObservable();
 
-  // private _cajaLog$ = new BehaviorSubject<any>(null); //aca va interface my data
-  // public cajaLog$ = this._cajaLog$.asObservable();
-
-  // private _facturacion$ = new BehaviorSubject<any>(null); //aca va interface my data
-  // public facturacion$ = this._facturacion$.asObservable();
 
   private _logger$ = new BehaviorSubject<any>(null); //aca va interface my data
   public logger$ = this._logger$.asObservable();
@@ -58,23 +53,11 @@ export class StorageService {
 
   updateObservable(componente: any, data: any) {
     switch (componente) {
-      // case 'playa': {
-      //   this._playa$.next(data);
-      //   break;
-      // }
-      // case 'tarifas': {
-      //   this._tarifas$.next(data);
-      //   break;
-      // }
+
       case 'usuario': {
         this._usuario$.next(data);
         break;
       }
-
-      // case 'clientes': {
-      //   this._clientes$.next(data);
-      //   break;
-      // }
 
       case 'alumnos': {
         this._alumnos$.next(data);
@@ -90,16 +73,6 @@ export class StorageService {
         this._cursos$.next(data);
         break;
       }
-
-      // case 'cajaLog': {
-      //   this._cajaLog$.next(data);
-      //   break;
-      // }
-
-      // case 'facturacion': {
-      //   this._facturacion$.next(data);
-      //   break;
-      // }
 
       case 'logger': {
         this._logger$.next(data);
@@ -153,17 +126,13 @@ export class StorageService {
 
   initializer() {
     this.getAll('empresa');
-    // this.getAllSorted('playa', 'fechas.fechaDate', 'asc');
-    // this.getAllSorted('tarifas', 'categoria', 'asc');
-    // this.getAllSorted('clientes', 'apellido', 'asc');
+
     this.getAllSorted('alumnos', 'apellido', 'asc');
     this.getAllSorted('profesores', 'apellido', 'asc');
     this.getAllSorted('cursos', 'nombre', 'asc');
-    // this.getNLatestOperations('cajaLog', 'apertura', 'asc',10);
-    // this.getAllSortedToday('facturacion', 'fechaOp', 'asc');
-    // this.getNLatestOperations('logger', 'Fecha', 'asc', 10);
+
     this.getUsuarios();
-    // this.getCaja();
+
 
   }
 
