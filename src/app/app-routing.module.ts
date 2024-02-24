@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
-import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
+import {
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+  canActivate,
+} from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './appLogin/forgot-password/forgot-password.component';
 import { LoginComponent } from './appLogin/login/login.component';
@@ -13,7 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LimboComponent } from './limbo/limbo.component';
 import { LogsComponent } from './logs/logs.component';
-import { OcupacionComponent } from './ocupacion/ocupacion.component';
+
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
@@ -38,23 +42,11 @@ const appRoutes: Routes = [
     component: HomeComponent,
     ...canActivate(redirectUnauthorizedToLogin),
     children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'playa',
-      //   pathMatch: 'full',
-      // },
       {
         path: '',
         redirectTo: 'calendario',
         pathMatch: 'full',
       },
- 
-
-      // {
-      //   path: 'caja',
-      //   component: CajaControlComponent,
-      //   ...canActivate(redirectUnauthorizedToLogin),
-      // },
 
       {
         path: 'calendario',
@@ -62,7 +54,6 @@ const appRoutes: Routes = [
         ...canActivate(redirectUnauthorizedToLogin),
       },
 
-  
       {
         path: 'alumnos',
         component: AlumnosControlComponent,
@@ -71,22 +62,16 @@ const appRoutes: Routes = [
 
       {
         path: 'profesores',
-        component: ProfesoresControlComponent ,
+        component: ProfesoresControlComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
 
       {
         path: 'cursos',
-        component: CursosControlComponent ,
+        component: CursosControlComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
 
-
-      {
-        path: 'ocupacion',
-        component: OcupacionComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-      },
       {
         path: 'logs',
         component: LogsComponent,
@@ -102,13 +87,12 @@ const appRoutes: Routes = [
         component: PerfilEmpresaComponent,
         ...canActivate(redirectUnauthorizedToLogin),
       },
-  
 
       {
         path: 'usuarios',
         component: UsuariosComponent,
         ...canActivate(redirectUnauthorizedToLogin),
-        canActivate:[IsSuperAdminGuard], 
+        canActivate: [IsSuperAdminGuard],
       },
       {
         path: 'contacto',
@@ -129,11 +113,8 @@ const appRoutes: Routes = [
   },
 ];
 
-
-
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DbFirestoreService } from '../database/db-firestore.service';
 // import { CajaStorageService } from './caja-storage.service';
-import { VehiculosStorageService } from './vehiculos-storage.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class StorageService {
   constructor(
     private dbFirestoreService: DbFirestoreService,
     // private cajaStorage: CajaStorageService,
-    private vehiculosStorage: VehiculosStorageService
+
   ) {}
 
   // Observables //
@@ -164,12 +164,10 @@ export class StorageService {
     // this.getNLatestOperations('logger', 'Fecha', 'asc', 10);
     this.getUsuarios();
     // this.getCaja();
-    this.getVehiculos();
+
   }
 
-  getVehiculos() {
-    this.vehiculosStorage.getAllSorted();
-  }
+
 
   getUsuarios() {
     this.dbFirestoreService.getUsersByColecion().subscribe((data) => {

@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { EstadoCajaService } from '../servicios/caja/estado-caja.service';
-import { ValidarPatenteService } from '../servicios/patentes/validar-patente.service';
+
 import { StorageService } from '../servicios/storage/storage.service';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,18 +18,17 @@ export class InicioComponent implements OnInit {
   patenteForm: any;
   searchText!: string;
   msg: any;
-  $modoCaja;
+
   playa$: any;
 
   constructor(
     config: NgbPopoverConfig,
     private fb: FormBuilder,
-    public vpService: ValidarPatenteService,
-    private estadoCaja: EstadoCajaService,
+
     private storageService: StorageService
   ) {
     config.autoClose = 'outside'; // Configuración para cerrar el popover al hacer clic fuera de él
-    this.$modoCaja = this.estadoCaja.getModoCaja();
+
 
     this.createForm()
   }
@@ -44,7 +42,7 @@ export class InicioComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          this.vpService.evaluarFormatoPatente(),
+
         ],
       ],
     });
@@ -63,32 +61,7 @@ export class InicioComponent implements OnInit {
   // FUNCION QUE TOMA EL DATO INGRESADO EN EL CAMPO
   // AL PULSAR ENTER O CUALQUIERA DE LOS BOTONES DE INGRESO O EGRESO
 
-  onSubmit() {
-    let str = this.patenteForm.value.patente;
 
-    // CHEQUEA VALIDEZ FORM AL ENVIAR, SI PASA VEMOS QUE HACEMOS
-    if (this.patenteForm.valid) {
-      // console.log('form valido?', this.patenteForm.valid);
-
-      // chequea si el str ingresado es barcode o patente
-      if (this.vpService.isBarCode(str)) {
-        this.confirmarEgresoBC(str);
-      } else {
-        // console.log('submited patente');
-        if (this.op === 'Eliminar') {
-          this.confirmarEgresoPat(str);
-        } else {
-          // this.confirmarIngresoPat(str); // comenatod para ahorrar un paso
-          
-          this.msgBack(this.op, str); //manda el form al parent para ingreso
-        }
-      }
-    } else {
-      alert(
-        'NO DEBERIA LLEGAR ACA, SOLUCIONAR FILTROS EN LOS CAMPOS form invalid'
-      );
-    }
-  }
 
   // SI ON SUBMIT RECONOCE UN TICKET, ONSCAN  CHEQUEA QUE ESTE AUTO EN PLAYA
   // PORQUE PUEDE SER UN TICKET VIEJO

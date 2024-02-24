@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CajaStorageService } from '../caja/caja-storage.service';
-import { EstadoCajaService } from '../caja/estado-caja.service';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable({
@@ -14,8 +12,8 @@ export class GetInfoService {
   sesionCajaCierre: any;
   saldoCaja: number;
   cajaOps = [];
-  saldoInicialCaja:number;
-  cantEgresosVehiculos: number
+  saldoInicialCaja: number;
+  cantEgresosVehiculos: number;
 
   private user$: any;
   private playa$: any;
@@ -23,20 +21,9 @@ export class GetInfoService {
   private saldoCaja$: number;
   private cajaOps$: [];
 
-  constructor(
-    private storageService: StorageService,
-    private cajaStorageService: CajaStorageService,
-    private estadoCajaService: EstadoCajaService
-  ) {
-    this.storageService.usuario$.subscribe((data) => (this.user$ = data)),
-   
-      this.estadoCajaService.sesionCaja$.subscribe(
-        (data) => (this.sesionCaja$ = data)
-      );
-    this.cajaStorageService.saldo$.subscribe(
-      (data) => (this.saldoCaja$ = data)
-    );
-    this.cajaStorageService.data$.subscribe((data) => (this.cajaOps$ = data));
+  constructor(private storageService: StorageService) {
+    this.storageService.usuario$.subscribe((data) => (this.user$ = data))
+
   }
 
   getUser() {
@@ -68,8 +55,8 @@ export class GetInfoService {
     this.sesionCajaCierre = '';
     this.saldoCaja = 0;
     this.cajaOps = [];
-    this.saldoInicialCaja=0
-    this.cantEgresosVehiculos=0
+    this.saldoInicialCaja = 0;
+    this.cantEgresosVehiculos = 0;
   }
 
   getCajaOps() {
@@ -78,7 +65,7 @@ export class GetInfoService {
   }
 
   getSaldoInicialCaja() {
-    this.getCajaOps()
+    this.getCajaOps();
     this.saldoInicialCaja =
       this.cajaOps.find((t) => t['operacion'] === 'apertura')?.['importe'] || 0;
   }
@@ -90,8 +77,8 @@ export class GetInfoService {
     this.getSesionCaja();
     this.sesionCajaCierre = new Date();
     this.getCajaOps();
-    this.getSaldoInicialCaja()
-    this.countEgresosVehiculos()  
+    this.getSaldoInicialCaja();
+    this.countEgresosVehiculos();
   }
 
   // countEgresosVehiculos() {
@@ -102,8 +89,8 @@ export class GetInfoService {
   countEgresosVehiculos() {
     this.getCajaOps();
     const regex = /\begreso\b/i; // Expresión regular que busca la palabra "egreso" como una palabra completa, ignorando mayúsculas y minúsculas
-    this.cantEgresosVehiculos = this.cajaOps.filter((t) => regex.test(t['concepto'])).length;
+    this.cantEgresosVehiculos = this.cajaOps.filter((t) =>
+      regex.test(t['concepto'])
+    ).length;
   }
-  
-
 }

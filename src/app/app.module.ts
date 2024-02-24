@@ -9,14 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { HttpClientModule } from '@angular/common/http';
-
 
 import { FilterPipe } from './servicios/filter.pipe';
 
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-
 
 import { TicketEntradaComponent } from './ticket/ticket-entrada/ticket-entrada.component';
 import { NgxPrintElementModule } from 'ngx-print-element';
@@ -24,7 +21,6 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { BtnReimpresionComponent } from './shared/botones/btn-reimpresion/btn-reimpresion.component';
 
 import { InicioComponent } from './inicio/inicio.component';
-
 
 import { environment } from '../environments/environment';
 
@@ -41,7 +37,6 @@ import { ScannerComponent } from './scanner/scanner.component';
 import { LogsComponent } from './logs/logs.component';
 import { LogService } from './servicios/log.service';
 
-
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 // LOGIN
@@ -57,7 +52,6 @@ import { ForgotPasswordComponent } from './appLogin/forgot-password/forgot-passw
 import { VerifyEmailComponent } from './appLogin/verify-email/verify-email.component';
 import { SignUpComponent } from './appLogin/sign-up/sign-up.component';
 import { LoginHeaderComponent } from './appLogin/login-header/login-header.component';
-
 
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
@@ -94,8 +88,6 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,19 +103,13 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
 
     PagenotfoundComponent,
 
-
     TicketEntradaComponent,
     BtnReimpresionComponent,
 
- 
-
     InicioComponent,
-
-
 
     ScannerComponent,
     LogsComponent,
-
 
     LogoutComponent,
     ForgotPasswordComponent,
@@ -134,34 +120,32 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
     PerfilUsuarioComponent,
     PerfilEmpresaComponent,
     EmpresaFormComponent,
- 
+
     NavbarComponent,
-  
 
     BtnConsultarComponent,
 
-      LimboComponent,
-      UsuariosComponent,
-      TicketHeaderComponent,
-      TicketCierreCajaComponent,
+    LimboComponent,
+    UsuariosComponent,
+    TicketHeaderComponent,
+    TicketCierreCajaComponent,
 
-      BtnShowComponent,
-      BtnIngresoComponent,
-      BtnEgresoComponent,
-      ContactoComponent,
+    BtnShowComponent,
+    BtnIngresoComponent,
+    BtnEgresoComponent,
+    ContactoComponent,
 
-      AlumnosControlComponent,
-      AlumnosFormComponent,
-      AlumnosViewComponent,
-      ProfesoresControlComponent,
-      ProfesoresFormComponent,
-      ProfesoresViewComponent,
-      CursosControlComponent,
-      CursosFormComponent,
-      CursosViewComponent,
-      CalendarComponent,
-      HorariosFormComponent,
-
+    AlumnosControlComponent,
+    AlumnosFormComponent,
+    AlumnosViewComponent,
+    ProfesoresControlComponent,
+    ProfesoresFormComponent,
+    ProfesoresViewComponent,
+    CursosControlComponent,
+    CursosFormComponent,
+    CursosViewComponent,
+    CalendarComponent,
+    HorariosFormComponent,
   ],
   imports: [
     DayPilotModule,

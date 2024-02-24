@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
-import { EstadoCajaService } from 'src/app/servicios/caja/estado-caja.service';
+
 import { StorageService } from 'src/app/servicios/storage/storage.service';
 import { AlumnosFormComponent } from '../alumnos-form/alumnos-form.component';
 
@@ -45,7 +45,7 @@ export class AlumnosControlComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     private storage: StorageService,
-    private estadoCaja: EstadoCajaService
+
   ) {}
 
   ngOnInit(): void {
