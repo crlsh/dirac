@@ -7,15 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScannerComponent implements OnInit {
 
-  barcode: string='';
+
   values: string[] =[];
   constructor() { }
 
   ngOnInit(): void {
   }
   onKey(event: any) {
-    this.barcode=event.target.value;
-    // console.log(this.barcode)
+   
+
 }
 
 }

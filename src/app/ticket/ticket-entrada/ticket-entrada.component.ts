@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPrintElementService } from 'ngx-print-element';
-import Swal from 'sweetalert2';
-import { CalculoFechasService } from 'src/app/servicios/Fechas/calculo-fechas.service';
+
 
 @Component({
   selector: 'app-ticket-entrada',
@@ -28,7 +27,7 @@ export class TicketEntradaComponent implements OnInit {
   constructor(
     public print: NgxPrintElementService,
     public activeModal: NgbActiveModal,
-    private fechaService: CalculoFechasService,
+
    // private estadiaService: EstadiaService,
     
   ) {}
@@ -41,7 +40,7 @@ export class TicketEntradaComponent implements OnInit {
     this.ticket();
 
     if (this.modo === 'Ticket Salida') {
-      this.tiempoEstadia();
+
       //this.saldoEstadia();
     }
   }
@@ -120,14 +119,11 @@ export class TicketEntradaComponent implements OnInit {
   }
 
 closeModal(){
-Swal.fire('Operacion Cancelada')
-  this.activeModal.dismiss('Operacion cancelada')
+
 
 }
 
-  tiempoEstadia() {
-    this.estadiaHoras = this.fechaService.tiempoEstadia(this.estadia);
-  }
+
 
   /* saldoEstadia( ){ 
     this.saldo = this.estadiaService.saldoEstadia(this.item.tarifa, this.estadia )

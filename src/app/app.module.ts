@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { OcupacionComponent } from './ocupacion/ocupacion.component';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +17,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 import { TicketEntradaComponent } from './ticket/ticket-entrada/ticket-entrada.component';
 import { NgxPrintElementModule } from 'ngx-print-element';
-import { NgxBarcode6Module } from 'ngx-barcode6';
+
 import { BtnReimpresionComponent } from './shared/botones/btn-reimpresion/btn-reimpresion.component';
 
 import { InicioComponent } from './inicio/inicio.component';
@@ -68,7 +68,7 @@ import { BtnConsultarComponent } from './shared/botones/btn-consultar/btn-consul
 import { LimboComponent } from './limbo/limbo.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { TicketHeaderComponent } from './ticket/ticket-header/ticket-header.component';
-import { TicketCierreCajaComponent } from './ticket/ticket-cierre-caja/ticket-cierre-caja.component';
+
 
 import { BtnShowComponent } from './shared/botones/btn-show/btn-show.component';
 import { BtnIngresoComponent } from './shared/botones/btn-ingreso/btn-ingreso.component';
@@ -92,7 +92,6 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
   declarations: [
     AppComponent,
     HeaderComponent,
-    OcupacionComponent,
     LoginComponent,
     HomeComponent,
     BtnAgregarComponent,
@@ -128,7 +127,7 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
     LimboComponent,
     UsuariosComponent,
     TicketHeaderComponent,
-    TicketCierreCajaComponent,
+
 
     BtnShowComponent,
     BtnIngresoComponent,
@@ -152,7 +151,7 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
     BrowserModule,
     FormsModule,
     NgxPrintElementModule,
-    NgxBarcode6Module,
+
     AppRoutingModule,
     NgbModule, //se importa la clase RouterModule y se le indica la const donde estan las rutas
     ReactiveFormsModule,
