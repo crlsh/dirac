@@ -9,9 +9,7 @@ export class HomeComponent implements OnInit {
   title = 'dirac';
 
   alumnos:any;
-  clientes!: any;
-  vehiculos!: any;
-  tarifas!: any;
+
   collapsed = true;
 
   constructor() {}

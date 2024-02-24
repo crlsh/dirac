@@ -20,17 +20,8 @@ export class StorageService {
 
   // Observables //
 
-  // private _playa$ = new BehaviorSubject<any>(null); //aca va interface my data
-  // public playa$ = this._playa$.asObservable();
-
-  // private _tarifas$ = new BehaviorSubject<any>(null); //aca va interface my data
-  // public tarifas$ = this._tarifas$.asObservable();
-
   private _usuario$ = new BehaviorSubject<any>(null); //aca va interface my data
   public usuario$ = this._usuario$.asObservable();
-
-  // private _clientes$ = new BehaviorSubject<any>(null); //aca va interface my data
-  // public clientes$ = this._clientes$.asObservable();
 
   private _alumnos$ = new BehaviorSubject<any>(null); //aca va interface my data
   public alumnos$ = this._alumnos$.asObservable();
@@ -103,11 +94,6 @@ export class StorageService {
     // localStorage.setItem(`${componente}`, jsonData); //local storage trabaja solo con strings
     this.updateObservable(componente, data);
   }
-
-  // loadInfo(componente: any) {
-  //   const data = JSON.parse(localStorage.getItem(componente) || '');
-  //   this.updateObservable(componente, data);
-  // }
 
   clearInfo(componente: any) {
     localStorage.removeItem('myData');

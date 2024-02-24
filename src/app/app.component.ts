@@ -9,9 +9,7 @@ export class AppComponent implements OnInit {
   title = 'dirac';
   // $estado;
 
-  clientes!: any;
-  vehiculos!: any;
-  tarifas!: any;
+
 
   constructor() {}
   ngOnInit(): void {}
