@@ -87,6 +87,7 @@ import { CursosViewComponent } from './cursos/cursos-view/cursos-view.component'
 import { CalendarComponent } from './calendar/calendar.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.component';
+import { ExperimentoComponent } from './experimento/experimento.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { HorariosFormComponent } from './cursos/horarios-form/horarios-form.comp
     CursosViewComponent,
     CalendarComponent,
     HorariosFormComponent,
+    ExperimentoComponent,
   ],
   imports: [
     DayPilotModule,
