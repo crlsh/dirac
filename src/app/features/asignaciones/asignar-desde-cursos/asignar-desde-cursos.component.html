@@ -1,0 +1,32 @@
+<div *ngIf="!modoEdicion">
+    <h3>Alumnos Inscritos en el Curso</h3>
+    <ul>
+      <li *ngFor="let alumno of alumnosInscritos">
+        {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+      </li>
+    </ul>
+    <button (click)="modoEdicion = true">Editar</button>
+  </div>
+  
+  <div *ngIf="modoEdicion">
+    <h3>Alumnos Inscritos en el Curso</h3>
+    <ul>
+      <li *ngFor="let alumno of alumnosInscritos">
+        {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+        <button (click)="quitarAlumno(alumno)">Quitar</button>
+      </li>
+    </ul>
+  
+    <div>
+      <h3>Resto de Alumnos</h3>
+      <ul>
+        <li *ngFor="let alumno of otrosAlumnos">
+          {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+          <button (click)="agregarAlumno(alumno)">Agregar</button>
+        </li>
+      </ul>
+    </div>
+    <button *ngIf="modoEdicion" (click)="cancelar()">Cancelar</button>
+    <button (click)="aceptarCambios()">Aceptar Cambios</button>
+  </div>
+  

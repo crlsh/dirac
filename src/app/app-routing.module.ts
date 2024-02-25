@@ -10,23 +10,22 @@ import { LoginComponent } from './appLogin/login/login.component';
 import { SignUpComponent } from './appLogin/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './appLogin/verify-email/verify-email.component';
 
-import { AlumnosControlComponent } from './alumnos/alumnos-control/alumnos-control.component';
+import { AlumnosControlComponent } from './features/alumnos/alumnos-control/alumnos-control.component';
 
 import { IsSuperAdminGuard } from './guards/is-super-admin.guard';
 import { HomeComponent } from './home/home.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { LimboComponent } from './limbo/limbo.component';
-import { LogsComponent } from './logs/logs.component';
+import { LimboComponent } from './core/limbo/limbo.component';
+import { LogsComponent } from './core/logs/logs.component';
 
-import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
-import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { PerfilEmpresaComponent } from './core/perfil-empresa/perfil-empresa.component';
+import { PerfilUsuarioComponent } from './core/perfil-usuario/perfil-usuario.component';
 
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosComponent } from './core/usuarios/usuarios.component';
 
-import { ContactoComponent } from './contacto/contacto.component';
-import { ProfesoresControlComponent } from './profesores/profesores-control/profesores-control.component';
-import { CursosControlComponent } from './cursos/cursos-control/cursos-control.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { ContactoComponent } from './core/contacto/contacto.component';
+import { ProfesoresControlComponent } from './features/profesores/profesores-control/profesores-control.component';
+import { CursosControlComponent } from './features/cursos/cursos-control/cursos-control.component';
+import { CalendarComponent } from './features/calendar/calendar.component';
 
 // const routes: Routes = [];
 
@@ -106,11 +105,7 @@ const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'register-user', component: SignUpComponent },
-  {
-    path: 'inicio',
-    component: InicioComponent,
-    ...canActivate(redirectUnauthorizedToLogin),
-  },
+
 ];
 
 @NgModule({
