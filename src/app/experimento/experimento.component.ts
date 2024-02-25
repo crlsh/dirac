@@ -1,49 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StorageService } from '../servicios/storage/storage.service';
 
 @Component({
   selector: 'app-experimento',
   templateUrl: './experimento.component.html',
-  styleUrls: ['./experimento.component.scss']
+  styleUrls: ['./experimento.component.scss'],
 })
 export class ExperimentoComponent implements OnInit {
+  @Input() fromParent: any; // Recibe el curso y sus datos
+  alumnosInscritos: any[] = [];
+  otrosAlumnos: any[] = [];
 
-  modoEditar = false;
+  snapshotIds: any[] = [];
+  mostrarVistaCompleta: boolean = false;
+  constructor(private storage: StorageService) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.storage.alumnos$.subscribe((alumnos) => {
+      this.actualizarAlumnos(alumnos);
+    });
+    this.snapshotIds = this.fromParent.item.alumnosId;
   }
 
-  alumnosTodos = [
-    { id: 1, nombre: 'Juan', apellido: 'Perez', idCursos: [1, 2] },
-    { id: 2, nombre: 'María', apellido: 'Gomez', idCursos: [2] },
-    { id: 3, nombre: 'Pedro', apellido: 'Rodriguez', idCursos: [1] }
-  ];
-
-  alumnosEnElCurso = [
-    { id: 1, nombre: 'Juan', apellido: 'Perez' },
-    { id: 3, nombre: 'Pedro', apellido: 'Rodriguez' }
-  ];
-
-  get alumnosNoEnElCurso() {
-    return this.alumnosTodos.filter(alumno => !this.alumnosEnElCurso.some(a => a.id === alumno.id));
+  actualizarAlumnos(alumnos: any[]): void {
+    this.alumnosInscritos = alumnos.filter((alumno) =>
+      this.snapshotIds.includes(alumno.id)
+    );
+    this.otrosAlumnos = alumnos.filter(
+      (alumno) => !this.snapshotIds.includes(alumno.id)
+    );
   }
 
-  quitarCurso(alumno: { id: number; }) {
-    this.alumnosEnElCurso = this.alumnosEnElCurso.filter(a => a.id !== alumno.id);
+  agregarAlumno(alumno: any): void {
+    // Lógica para agregar el alumno
+    console.log('Alumno agregado:', alumno);
+    this.alumnosInscritos.push(alumno); // Agregar alumno a la lista de inscritos
+    this.otrosAlumnos = this.otrosAlumnos.filter((a) => a.id !== alumno.id); // Remover alumno de otros alumnos
   }
 
-  agregarCurso(alumno: { id: number; nombre: string; apellido: string; }) {
-    this.alumnosEnElCurso.push(alumno);
+  quitarAlumno(alumno: any): void {
+    // Lógica para quitar el alumno
+    console.log('Alumno eliminado:', alumno);
+    this.alumnosInscritos = this.alumnosInscritos.filter(
+      (a) => a.id !== alumno.id
+    ); // Remover alumno de la lista de inscritos
+    this.otrosAlumnos.push(alumno); // Agregar alumno a otros alumnos
   }
 
-  aceptar() {
-    console.log('Alumnos en el curso:', this.alumnosEnElCurso);
-    console.log('Alumnos no en el curso:', this.alumnosNoEnElCurso);
+  aceptarCambios(): void {
+    console.log(
+      'IDs de los alumnos inscritos:',
+      this.alumnosInscritos.map((alumno) => alumno.id)
+    );
+    this.toggleVistaCompleta();
+    // Lógica para aceptar cambios
   }
-
+  resetearDatos() {
+    // Volver a cargar los datos originales del curso o restablecer los datos según sea necesario
+    this.storage.alumnos$.subscribe((alumnos) => {
+      this.actualizarAlumnos(alumnos);
+    });
+    this.snapshotIds = this.fromParent.item.alumnosId;
+  }
   cancelar() {
-    this.modoEditar = false;
+    this.mostrarVistaCompleta = false; // Cambiar de nuevo a vista normal
+    this.resetearDatos(); // Restablecer los datos a su estado inicial
   }
-
-  
+  toggleVistaCompleta() {
+    this.mostrarVistaCompleta = !this.mostrarVistaCompleta;
+  }
 }

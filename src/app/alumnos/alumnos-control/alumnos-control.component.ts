@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
 
 import { StorageService } from 'src/app/servicios/storage/storage.service';
@@ -25,7 +24,7 @@ export class AlumnosControlComponent implements OnInit {
 
 
 
-  
+
   @Input() mostrarVista: boolean = false;
   mensaje: string = 'Mensaje predeterminado';
 
@@ -43,7 +42,7 @@ export class AlumnosControlComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private fb: FormBuilder,
+
     private storage: StorageService,
 
   ) {}
@@ -109,7 +108,7 @@ export class AlumnosControlComponent implements OnInit {
         break;
       }
       case 'Vehiculo Editar': {
-        
+
         //console.log("vehiculo editar", item)
         this.storage.updateItem('vehiculos', item);
         break;

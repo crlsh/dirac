@@ -8,6 +8,7 @@ import { DbFirestoreService } from '../database/db-firestore.service';
   providedIn: 'root',
 })
 export class StorageService {
+  [x: string]: any;
   // los componentes trabajan solo con el storage
   // el storage hace las operaciones crud solo cuando hagan falta
   // los observables mantienen la info sincronizada entre comp y storage.

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // servicios modal
 import { StorageService } from 'src/app/servicios/storage/storage.service';
 import { CursosFormComponent } from '../cursos-form/cursos-form.component';
+import { ExperimentoComponent } from 'src/app/experimento/experimento.component';
 
 
 @Component({
@@ -58,28 +59,45 @@ export class CursosControlComponent implements OnInit {
   }
 
   openForm(modo: string, item: any) {
-    {
-      const modalRef = this.modalService.open(CursosFormComponent, {
+    if (modo === 'Alumnos') {
+      const modalRef = this.modalService.open(ExperimentoComponent, {
         windowClass: 'myCustomModalClass',
-        //  centered: true,
         size: 'xs',
       });
-
-      let info = {
+  
+      const info = {
         modo: modo,
         item: item,
       };
-
+  
       modalRef.componentInstance.fromParent = info;
       modalRef.result.then(
         (result) => {
-
+          this.selectCrudOp(result.op, result.item);
+        },
+        (reason) => { }
+      );
+    } else {
+      const modalRef = this.modalService.open(CursosFormComponent, {
+        windowClass: 'myCustomModalClass',
+        size: 'xs',
+      });
+  
+      const info = {
+        modo: modo,
+        item: item,
+      };
+  
+      modalRef.componentInstance.fromParent = info;
+      modalRef.result.then(
+        (result) => {
           this.selectCrudOp(result.op, result.item);
         },
         (reason) => { }
       );
     }
   }
+  
 
   // seleccionar operacion CRUD
 

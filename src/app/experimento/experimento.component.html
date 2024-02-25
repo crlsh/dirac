@@ -1,46 +1,31 @@
-<!-- <div>
-    <h2>Alumnos inscriptos en el curso:</h2>
-    <ul>
-      <li *ngFor="let alumno of alumnosEnElCurso">
-        {{ alumno.id }}, {{ alumno.nombre }}, {{ alumno.apellido }}
-        <button (click)="quitarCurso(alumno)">Quitar curso</button>
-      </li>
-    </ul>
-    <h2>Alumnos no inscriptos en el curso:</h2>
-    <ul>
-      <li *ngFor="let alumno of alumnosNoEnElCurso">
-        {{ alumno.id }}, {{ alumno.nombre }}, {{ alumno.apellido }}
-        <button (click)="agregarCurso(alumno)">Agregar curso</button>
-      </li>
-    </ul>
-    <button (click)="aceptar()">Aceptar</button>
-  </div> -->
+<div *ngIf="!mostrarVistaCompleta">
+  <h3>Alumnos Inscritos en el Curso</h3>
+  <ul>
+    <li *ngFor="let alumno of alumnosInscritos">
+      {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+    </li>
+  </ul>
+  <button (click)="mostrarVistaCompleta = true">Editar</button>
+</div>
 
+<div *ngIf="mostrarVistaCompleta">
+  <h3>Alumnos Inscritos en el Curso</h3>
+  <ul>
+    <li *ngFor="let alumno of alumnosInscritos">
+      {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+      <button (click)="quitarAlumno(alumno)">Quitar</button>
+    </li>
+  </ul>
 
-  <div *ngIf="!modoEditar">
-    <h2>Alumnos inscriptos en el curso:</h2>
+  <div>
+    <h3>Resto de Alumnos</h3>
     <ul>
-      <li *ngFor="let alumno of alumnosEnElCurso">
-        {{ alumno.id }}, {{ alumno.nombre }}, {{ alumno.apellido }}
+      <li *ngFor="let alumno of otrosAlumnos">
+        {{ alumno.id }} - {{ alumno.nombre }} {{ alumno.apellido }}
+        <button (click)="agregarAlumno(alumno)">Agregar</button>
       </li>
     </ul>
-    <button (click)="modoEditar = true">Modificar</button>
   </div>
-  <div *ngIf="modoEditar">
-    <h2>Alumnos inscriptos en el curso:</h2>
-    <ul>
-      <li *ngFor="let alumno of alumnosEnElCurso">
-        {{ alumno.id }}, {{ alumno.nombre }}, {{ alumno.apellido }}
-        <button (click)="quitarCurso(alumno)">Quitar curso</button>
-      </li>
-    </ul>
-    <h2>Alumnos no inscriptos en el curso:</h2>
-    <ul>
-      <li *ngFor="let alumno of alumnosNoEnElCurso">
-        {{ alumno.id }}, {{ alumno.nombre }}, {{ alumno.apellido }}
-        <button (click)="agregarCurso(alumno)">Agregar curso</button>
-      </li>
-    </ul>
-    <button (click)="aceptar()">Aceptar</button>
-    <button (click)="cancelar()">Cancelar</button>
-  </div>
+  <button *ngIf="mostrarVistaCompleta" (click)="cancelar()">Cancelar</button>
+  <button (click)="aceptarCambios()">Aceptar Cambios</button>
+</div>
