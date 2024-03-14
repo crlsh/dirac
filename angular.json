@@ -28,7 +28,10 @@
               "src/assets"
             ],
             "styles": [
-     
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/scss/paper-dashboard.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/css/demo.css",
               "src/styles.scss",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
               

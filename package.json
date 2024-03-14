@@ -30,11 +30,10 @@
     "datatables.net-bs5": "^1.11.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
-
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
-
     "ngx-print-element": "^2.0.16",
+    "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",

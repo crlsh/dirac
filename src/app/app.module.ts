@@ -83,7 +83,6 @@ import { CursosViewComponent } from './features/cursos/cursos-view/cursos-view.c
 import { CalendarComponent } from './features/calendar/calendar.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { HorariosFormComponent } from './features/cursos/horarios-form/horarios-form.component';
-import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
 import { AsignarDesdeCursosComponent } from './features/asignaciones/asignar-desde-cursos/asignar-desde-cursos.component';
 import { AsignarDesdeAypComponent } from './features/asignaciones/asignar-desde-ayp/asignar-desde-ayp.component';
 
@@ -99,7 +98,7 @@ import { AsignarDesdeAypComponent } from './features/asignaciones/asignar-desde-
 
     FilterPipe,
 
-    PagenotfoundComponent,
+  
 
 
     BtnReimpresionComponent,

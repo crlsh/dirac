@@ -41,7 +41,7 @@
 
 
     <ng-template #vistaCompleta>
-    <div style="float: right" class="pantallasPequenias2" >
+    <div style="float: right"  >
       <app-btn-ingreso
         class="right"
         (click)="msgBack('Agregar', [])"
@@ -57,9 +57,9 @@
             <th>DNI</th>
             <th>Apellido</th>
             <th>Nombre</th>
-            <th class="pantallasPequenias2">telefono</th>
-            <th class="pantallasPequenias">Direccion</th>
-            <th class="pantallasPequenias2">email</th>
+            <th >telefono</th>
+            <th >Direccion</th>
+            <th >email</th>
         
             <th id="colBtn"></th>
           <!--   <th></th>
@@ -73,9 +73,9 @@
             <td class="align-middle" id="dni">{{ item.dni }}</td>
             <td class="align-middle">{{ item.apellido }}</td>
             <td class="align-middle">{{ item.nombre }}</td>
-            <td class="align-middle pantallasPequenias2">{{ item.telefono }}</td>
-            <td class="align-middle pantallasPequenias">{{ item.direccion }}</td>
-            <td class="align-middle pantallasPequenias2" id="correo">{{ item.email }}</td>
+            <td class="align-middle ">{{ item.telefono }}</td>
+            <td class="align-middle ">{{ item.direccion }}</td>
+            <td class="align-middle " id="correo">{{ item.email }}</td>
    
             <td class="align-middle botones">
 
