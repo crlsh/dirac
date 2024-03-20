@@ -57,7 +57,6 @@ import { EmpresaFormComponent } from './core/perfil-empresa/empresa-form/empresa
 import { DataTablesModule } from 'angular-datatables';
 
 import { NavbarComponent } from './home/navbar/navbar.component';
-import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BtnConsultarComponent } from './shared/botones/btn-consultar/btn-consultar.component';
@@ -85,11 +84,13 @@ import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { HorariosFormComponent } from './features/cursos/horarios-form/horarios-form.component';
 import { AsignarDesdeCursosComponent } from './features/asignaciones/asignar-desde-cursos/asignar-desde-cursos.component';
 import { AsignarDesdeAypComponent } from './features/asignaciones/asignar-desde-ayp/asignar-desde-ayp.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { SidebarComponent } from './home/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    
     LoginComponent,
     HomeComponent,
     BtnAgregarComponent,
@@ -146,6 +147,8 @@ import { AsignarDesdeAypComponent } from './features/asignaciones/asignar-desde-
     AsignarDesdeCursosComponent,
 
     AsignarDesdeAypComponent,
+      FooterComponent,
+      SidebarComponent,
   ],
   imports: [
     DayPilotModule,
