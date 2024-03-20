@@ -1,1 +1,43 @@
-<p>sidebar works!</p>
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="http://www.pueblada-factory.com" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="assets/img/angular2-logo.png">
+      </div>
+    </a>
+    <a href="" class="simple-text logo-normal">
+      D I R A C
+    </a>
+  </div>
+  <ul class="nav">
+    <!-- Iterate over menu items -->
+    <ng-container *ngFor="let menuItem of menuItems">
+      <li routerLinkActive="active" class="{{menuItem.class}}">
+        <a [routerLink]="[menuItem.path]">
+          <i class="nc-icon {{menuItem.icon}}"></i>
+          <p>{{menuItem.title}}</p>
+        </a>
+      </li>
+    </ng-container>
+
+    <!-- Dashboard accordion -->
+    <li (click)="toggleDashboard()" [class.active]="isDashboardOpen">
+      <a>
+        <i class="nc-icon fa fa-dashboard"></i>
+        <p>Dashboard</p>
+        <span class="caret" [class.open]="isDashboardOpen"></span>
+      </a>
+      <ul class="nav" *ngIf="isDashboardOpen">
+        <!-- Here we include the routes you want to group under "Dashboard" -->
+        <ng-container *ngFor="let dashboardItem of dashboardItems">
+          <li routerLinkActive="active" class="{{dashboardItem.class}}">
+            <a [routerLink]="[dashboardItem.path]">
+              <i class="nc-icon {{dashboardItem.icon}}"></i>
+              <p>{{dashboardItem.title}}</p>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
+</div>

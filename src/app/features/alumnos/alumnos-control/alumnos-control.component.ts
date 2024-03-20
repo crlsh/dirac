@@ -7,8 +7,7 @@ import { AlumnosFormComponent } from '../alumnos-form/alumnos-form.component';
 @Component({
   selector: 'app-alumnos-control',
   template: `
-
-  <app-alumnos-view
+  <app-alumnos-view 
     [data]="data$"
     [mostrarVista]="mostrarVista"
     (newItemEvent)="getMsg($event)"
