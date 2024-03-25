@@ -32,10 +32,7 @@ import { Component, Input, OnInit } from '@angular/core';
   `,
 
   styles: [`
-  button{
-    width:50px;
-    height:40px;
-  }
+
   `],
 })
 export class BtnEliminarComponent implements OnInit {

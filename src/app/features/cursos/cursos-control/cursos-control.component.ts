@@ -10,7 +10,7 @@ import { AsignarDesdeCursosComponent } from '../../asignaciones/asignar-desde-cu
   template: `
 
   <app-cursos-view
-  [mostrarVista]="mostrarVista"
+
     [data]="data$"
     (newItemEvent)="getMsg($event)"
   ></app-cursos-view>
@@ -25,20 +25,6 @@ export class CursosControlComponent implements OnInit {
 
 
   // el input determina el comportamiento del componente, como crud o como auxiliar de otro
-
-  @Input() mostrarVista: boolean = false;
-  mensaje: string = 'Mensaje predeterminado';
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('Cambios en mostrarVista:', changes);
-    if (changes['mostrarVista']) {
-      this.actualizarMensaje(changes['mostrarVista'].currentValue);
-    }
-  }
-
-  private actualizarMensaje(valor: boolean): void {
-    this.mensaje = valor ? 'Mostrando vista' : 'No mostrando vista';
-  }
 
 
 
@@ -64,12 +50,12 @@ export class CursosControlComponent implements OnInit {
         windowClass: 'myCustomModalClass',
         size: 'xs',
       });
-  
+
       const info = {
         modo: modo,
         item: item,
       };
-  
+
       modalRef.componentInstance.fromParent = info;
       modalRef.result.then(
         (result) => {
@@ -82,12 +68,12 @@ export class CursosControlComponent implements OnInit {
         windowClass: 'myCustomModalClass',
         size: 'xs',
       });
-  
+
       const info = {
         modo: modo,
         item: item,
       };
-  
+
       modalRef.componentInstance.fromParent = info;
       modalRef.result.then(
         (result) => {
@@ -97,7 +83,7 @@ export class CursosControlComponent implements OnInit {
       );
     }
   }
-  
+
 
   // seleccionar operacion CRUD
 

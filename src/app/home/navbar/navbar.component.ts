@@ -1,14 +1,8 @@
-import { StorageService } from 'src/app/servicios/storage/storage.service';
-import {
-  Component,
-  OnInit,
-  Renderer2,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
-import { ROUTES } from '../routes';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { StorageService } from 'src/app/servicios/storage/storage.service';
+import {ROUTES, RouteInfo} from '../routes';
 
 @Component({
   selector: 'app-navbar',
@@ -16,56 +10,44 @@ import { Location } from '@angular/common';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  user$!: any;
-
   private listTitles: any[];
   location: Location;
   private nativeElement: Node;
-  private toggleButton: any;
+  private toggleButton: Element;
   private sidebarVisible: boolean;
 
   public isCollapsed = true;
-  @ViewChild('navbar-cmp', { static: false }) button: any;
+  @ViewChild("navbar-cmp", {static: false}) button: any;
 
-  ngOnInit(): void {
-    this.user$ = this.storageService.usuario$;
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
-    var navbar : HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-    this.router.events.subscribe((event) => {
-      this.sidebarClose();
-   });
-}
-
-  constructor(
-    private storageService: StorageService,
-    location: Location,
-    private renderer: Renderer2,
-    private element: ElementRef,
-    private router: Router
-  ) {
-    this.location = location;
-    this.nativeElement = element.nativeElement;
-    this.sidebarVisible = false;
+  constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router) {
+      this.location = location;
+      this.nativeElement = element.nativeElement;
+      this.sidebarVisible = false;
   }
+
+  ngOnInit(){
+      this.listTitles = ROUTES.filter((listTitle: any) => listTitle);
+      var navbar : HTMLElement = this.element.nativeElement;
+      this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+      this.router.events.subscribe((event) => {
+        this.sidebarClose();
+     });
+  }
+ 
 
   getTitle() {
     // Obtener la ruta actual de Angular
     const currentPath = this.location.path();
-    console.log('Current path:', currentPath); // Verificar la ruta actual
+    // console.log('Current path:', currentPath); // Verificar la ruta actual
   
     // Buscar la ruta coincidente en las rutas definidas
     const matchedRoute = this.listTitles.find(route => currentPath.includes(route.path.replace('./', '')));
   
-    console.log('Matched route:', matchedRoute); // Verificar la ruta coincidente
+    // console.log('Matched route:', matchedRoute); // Verificar la ruta coincidente
   
     // Devolver el título de la ruta coincidente o "Dashboard" si no se encuentra ninguna coincidencia
     return matchedRoute ? matchedRoute.title : 'Dashboard';
   }
-  
-  
-  
-  
   
   sidebarToggle() {
       if (this.sidebarVisible === false) {
@@ -113,6 +95,4 @@ export class NavbarComponent implements OnInit {
       }
 
     }
-
-
-}
+  }

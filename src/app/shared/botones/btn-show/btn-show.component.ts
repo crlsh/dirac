@@ -12,10 +12,7 @@ import { Component, OnInit } from '@angular/core';
     </button>
   `,
   styles: [`
-  button{
-    width:40px;
-    height:40px;
-  }
+
   `],
 })
 export class BtnShowComponent implements OnInit {

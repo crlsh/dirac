@@ -37,10 +37,7 @@ import { Component, Input, OnInit } from '@angular/core';
   `,
 
   styles: [`
-   button{
-    width:40px;
-    height:40px;
-  }
+
   `],
 })
 export class BtnReimpresionComponent implements OnInit {

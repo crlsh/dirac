@@ -17,7 +17,7 @@ export class CursosViewComponent implements OnInit {
   horario: string = 'Horario';
   dtOptions: DataTables.Settings = {};
   msg: any;
-  @Input() mostrarVista: boolean = false;
+
 
 
   constructor(private storageService: StorageService) {}
@@ -25,7 +25,9 @@ export class CursosViewComponent implements OnInit {
   ngOnInit(): void {
     this.setDataTableOptions();
   }
-
+  ngAfterViewInit(): void {
+    this.setDataTableOptions();
+  }
   msgBack(op: string, item: any) {
     let value = {
       op: op,
@@ -33,7 +35,7 @@ export class CursosViewComponent implements OnInit {
     };
     if (op === 'Eliminar') {
       Swal.fire({
-        title: '¿Desea eliminar el cliente?',
+        title: '¿Desea eliminar el curso?',
         text: 'No podrá revertir esta acción',
         icon: 'warning',
         showCancelButton: true,
@@ -59,18 +61,7 @@ export class CursosViewComponent implements OnInit {
 
 
   setDataTableOptions() {
-    if (this.mostrarVista) {
-      this.dtOptions = {
-        // configuración específica para la vista reducida
-        // por ejemplo, con búsqueda, con ordenamiento, etc.
-        dom: 't<"bottom"riflp><"clear">',
-        language: LanguageApp.spanish_datatables,
-        columnDefs: [
-          { orderable: false, targets: [2] },
-          { searchable: false, targets: [2] },
-        ],
-      };
-    } else {
+
       this.dtOptions = {
         // configuración específica para la vista completa
         // por ejemplo, con búsqueda, con ordenamiento, etc.
@@ -84,5 +75,5 @@ export class CursosViewComponent implements OnInit {
       };
       };
     }
-  }
+  
 

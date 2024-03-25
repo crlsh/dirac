@@ -1,113 +1,74 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
 
-  <ng-container *ngIf="mostrarVista; else vistaCompleta">
-    <div class="mt-5">
-      <table datatable [dtOptions]="dtOptions" class="display table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th>Nombre</th>
-            <th id="colBtn"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of data | async; let i = index">
-            <td class="badge text-center align-middlee" scope="row">
-              {{ item.id }}
-            </td>
-            <td class="align-middle">{{ item.nombre }}</td>
-            <td class="align-middle botones">
-              <app-btn-agregar
-                class="right"
-                (click)="msgBack('Agregar', item)"
-                [name]="'Agregar'"
-              >
-              </app-btn-agregar>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </ng-container>
-  <ng-template #vistaCompleta>
-    <div style="float: right">
-      <button class="btn btn-success" [print]="['print-section']">print</button>
-      <app-btn-ingreso
-        class="right"
-        (click)="msgBack('Agregar', [])"
-        class="d-flex align-items-center"
-      >
-      </app-btn-ingreso>
-    </div>
-    <div class="mt-5" id="print-section">
-      <table datatable [dtOptions]="dtOptions" class="display table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th>Nombre</th>
-            <th>Inicio</th>
-            <th >Fin</th>
-            <th >Profesor</th>
-            <!-- <th >Costo</th> -->
-            <th id="colBtn"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of data | async; let i = index">
-            <td class="badge text-center align-middlee" scope="row">
-              {{ i + 1 }}
-            </td>
-            <td class="align-middle">{{ item.nombre }}</td>
-            <td class="align-middle">{{ item.inicio }}</td>
-            <td class="align-middle ">{{ item.fin }}</td>
-            <td class="align-middle ">{{ item.profesor }}</td>
-            <!-- <td class="align-middle " id="costo">
+        <button class="btn btn-success" [print]="['print-section']">print</button>
+        <app-btn-ingreso class="right" (click)="msgBack('Agregar', [])" class="d-flex align-items-center">
+        </app-btn-ingreso>
+      </div>
+
+      <div class="card-body">
+        <div class="mt-5" id="print-section">
+          <table datatable [dtOptions]="dtOptions" class="display table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th>Nombre</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Profesor</th>
+                <!-- <th >Costo</th> -->
+                <th id="colBtn"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data | async; let i = index">
+                <td class="badge text-center align-middlee" scope="row">
+                  {{ i + 1 }}
+                </td>
+                <td class="align-middle">{{ item.nombre }}</td>
+                <td class="align-middle">{{ item.inicio }}</td>
+                <td class="align-middle ">{{ item.fin }}</td>
+                <td class="align-middle ">{{ item.profesor }}</td>
+                <!-- <td class="align-middle " id="costo">
               {{ item.costo }}
             </td> -->
 
-            <td class="align-middle botones">
-              <app-btn-show
-                class="right"
-                (click)="msgBack('Mostrar', item)"
-                class="d-flex align-items-center"
-              >
-              </app-btn-show>
-              <!-- <app-btn-agregar
+                <td class="align-middle botones">
+                  <app-btn-show class="right" (click)="msgBack('Mostrar', item)" class="d-flex align-items-center">
+                  </app-btn-show>
+                  <!-- <app-btn-agregar
               class="right"
               (click)="msgBack('Horarios', item)"
               [name]="horario"
             >
             </app-btn-agregar> -->
 
-              <!-- <app-btn-agregar
+                  <!-- <app-btn-agregar
                 class="right"
                 (click)="msgBack('Profesores', item)"
                 [name]="profesor"
               >
               </app-btn-agregar> -->
 
-              <app-btn-agregar
-                class="right"
-                (click)="msgBack('Alumnos', item)"
-                [name]="alumnos"
-              >
-              </app-btn-agregar>
-              <!-- <app-btn-editar
+                  <app-btn-agregar class="right" (click)="msgBack('Alumnos', item)" [name]="alumnos">
+                  </app-btn-agregar>
+                  <!-- <app-btn-editar
                 class="right"
                 (click)="msgBack('Editar', item)"
                 class="d-flex align-items-center"
               >
               </app-btn-editar> -->
 
-              <app-btn-eliminar
-                class="right"
-                (click)="msgBack('Eliminar', item)"
-                class="d-flex align-items-center"
-              >
-              </app-btn-eliminar>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  <app-btn-eliminar class="right" (click)="msgBack('Eliminar', item)" class="d-flex align-items-center">
+                  </app-btn-eliminar>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </ng-template>
-
+  </div>
+</div>

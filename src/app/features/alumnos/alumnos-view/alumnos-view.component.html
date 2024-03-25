@@ -1,63 +1,65 @@
-<!-- <H1 class="display-1" style="text-align: center;">Alumnos </H1> -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+   
 
+      <div style="float: right">
+        <app-btn-ingreso class="right" (click)="msgBack('Agregar', [])" class="d-flex align-items-center">
+        </app-btn-ingreso>
+      </div>
+      <table datatable [dtOptions]="dtOptions" class="display table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th>DNI</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>telefono</th>
+            <th>Direccion</th>
+            <th>email</th>
 
-<div class="wrapper">
-
-  <div style="float: right">
-    <app-btn-ingreso class="right" (click)="msgBack('Agregar', [])" class="d-flex align-items-center">
-    </app-btn-ingreso>
-  </div>
-  <table datatable [dtOptions]="dtOptions" class="display table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th>DNI</th>
-        <th>Apellido</th>
-        <th>Nombre</th>
-        <th>telefono</th>
-        <th>Direccion</th>
-        <th>email</th>
-
-        <th id="colBtn"></th>
-        <!--   <th></th>
+            <th id="colBtn"></th>
+            <!--   <th></th>
             <th ></th> -->
-      </tr>
-    </thead>
+          </tr>
+        </thead>
 
-    <tbody>
-      <tr *ngFor="let item of data | async; let i = index">
-        <td class="badge text-center align-middlee" scope="row">{{ i + 1 }}</td>
-        <td class="align-middle" id="dni">{{ item.dni }}</td>
-        <td class="align-middle">{{ item.apellido }}</td>
-        <td class="align-middle">{{ item.nombre }}</td>
-        <td class="align-middle ">{{ item.telefono }}</td>
-        <td class="align-middle ">{{ item.direccion }}</td>
-        <td class="align-middle " id="correo">{{ item.email }}</td>
+        <tbody>
+          <tr *ngFor="let item of data | async; let i = index">
+            <td class="badge text-center align-middlee" scope="row">{{ i + 1 }}</td>
+            <td class="align-middle" id="dni">{{ item.dni }}</td>
+            <td class="align-middle">{{ item.apellido }}</td>
+            <td class="align-middle">{{ item.nombre }}</td>
+            <td class="align-middle ">{{ item.telefono }}</td>
+            <td class="align-middle ">{{ item.direccion }}</td>
+            <td class="align-middle " id="correo">{{ item.email }}</td>
 
-        <td class="align-middle botones">
+            <td class="align-middle botones">
 
-          <app-btn-agregar class="right" (click)="msgBack('Cursos', item)" [name]="cursos">
-          </app-btn-agregar>
+              <app-btn-agregar class="right" (click)="msgBack('Cursos', item)" [name]="cursos">
+              </app-btn-agregar>
 
-          <app-btn-editar class="right" (click)="msgBack('Editar', item)" class="d-flex align-items-center">
-          </app-btn-editar>
+              <app-btn-editar class="right" (click)="msgBack('Editar', item)" class="d-flex align-items-center">
+              </app-btn-editar>
 
-          <!-- <app-btn-agregar
+              <!-- <app-btn-agregar
                 class="right"
                 (click)="msgBack('Vehiculo', item)"
                 [name]="vehiculo"
               >
               </app-btn-agregar> -->
 
-          <app-btn-eliminar class="right" (click)="msgBack('Eliminar', item)" class="d-flex align-items-center">
-          </app-btn-eliminar>
+              <app-btn-eliminar class="right" (click)="msgBack('Eliminar', item)" class="d-flex align-items-center">
+              </app-btn-eliminar>
 
-          <app-btn-show class="align-middle" (click)="msgBack('Mostrar', item)">
+              <app-btn-show class="align-middle" (click)="msgBack('Mostrar', item)">
 
-          </app-btn-show>
+              </app-btn-show>
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

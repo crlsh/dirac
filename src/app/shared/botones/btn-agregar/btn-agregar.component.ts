@@ -48,10 +48,7 @@ import { Component, Input, OnInit } from '@angular/core';
     </button>
   `,
   styles: [`
-   button{
-    width:50px;
-    height:40px;
-  }
+
   `],
 })
 export class BtnAgregarComponent implements OnInit {

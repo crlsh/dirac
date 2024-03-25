@@ -19,10 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
     </button>
   `,
   styles: [`
-  button{
-    width:40px;
-    height:40px;
-  }
+
   `],
 })
 export class BtnEditarComponent implements OnInit {

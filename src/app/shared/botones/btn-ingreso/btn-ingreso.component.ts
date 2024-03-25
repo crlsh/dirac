@@ -13,11 +13,7 @@ import { Component, Input, OnInit } from '@angular/core';
     `,
   
     styles: [`
-     @media screen and (max-width: 991.9px) {
-        button{
-          width: 93px;
-        }
-    }
+ 
     `],
 })
 export class BtnIngresoComponent implements OnInit {
