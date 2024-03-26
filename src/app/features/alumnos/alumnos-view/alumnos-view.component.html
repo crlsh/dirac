@@ -1,12 +1,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-   
+      <div class="card-header">
 
       <div style="float: right">
         <app-btn-ingreso class="right" (click)="msgBack('Agregar', [])" class="d-flex align-items-center">
         </app-btn-ingreso>
       </div>
+    </div>
+    <div class="table-responsive">
       <table datatable [dtOptions]="dtOptions" class="display table">
         <thead>
           <tr>
@@ -35,7 +37,7 @@
             <td class="align-middle " id="correo">{{ item.email }}</td>
 
             <td class="align-middle botones">
-
+              <div class="btn-group" role="group" aria-label="Basic example">
               <app-btn-agregar class="right" (click)="msgBack('Cursos', item)" [name]="cursos">
               </app-btn-agregar>
 
@@ -55,11 +57,12 @@
               <app-btn-show class="align-middle" (click)="msgBack('Mostrar', item)">
 
               </app-btn-show>
-
+            </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
   </div>
 </div>

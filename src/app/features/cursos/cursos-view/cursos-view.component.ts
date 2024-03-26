@@ -1,14 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { StorageService } from 'src/app/servicios/storage/storage.service';
 import { LanguageApp } from 'src/app/shared/DTLanguage';
 import Swal from 'sweetalert2';
+
+declare var $: any; // Declaramos la variable $ para acceder a jQuery y DataTables
 
 @Component({
   selector: 'app-cursos-view',
   templateUrl: './cursos-view.component.html',
   styleUrls: ['./cursos-view.component.scss'],
 })
-export class CursosViewComponent implements OnInit {
+export class CursosViewComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() data?: any;
   @Output() newItemEvent = new EventEmitter<any>();
   titulo: string = 'cursos';
@@ -18,16 +20,22 @@ export class CursosViewComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   msg: any;
 
-
-
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.setDataTableOptions();
+    // No inicializamos DataTables aquí
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // No inicializamos DataTables aquí
+  }
+
   ngAfterViewInit(): void {
+    // Inicializamos DataTables aquí después de que la vista se haya cargado
     this.setDataTableOptions();
+    $('#dataTable').DataTable(this.dtOptions); // Inicializamos DataTables
   }
+
   msgBack(op: string, item: any) {
     let value = {
       op: op,
@@ -48,32 +56,22 @@ export class CursosViewComponent implements OnInit {
         }
       });
     } else {
-      //console.log(value);
-
       this.newItemEvent.emit(value);
     }
   }
 
-
   someClickHandler(info: any): void {
-    console.log( info, 'from datatable')
+    console.log(info, 'from datatable');
   }
 
-
   setDataTableOptions() {
-
-      this.dtOptions = {
-        // configuración específica para la vista completa
-        // por ejemplo, con búsqueda, con ordenamiento, etc.
-        dom: 't<"bottom"riflp><"clear">',
-        language: LanguageApp.spanish_datatables,
-        columnDefs: [
-          { orderable: false, targets: [4] },
-          { searchable: false, targets: [4] },
-        ],
-
-      };
-      };
-    }
-  
-
+    this.dtOptions = {
+      dom: 't<"bottom"riflp><"clear">',
+      language: LanguageApp.spanish_datatables,
+      columnDefs: [
+        { orderable: false, targets: [4] },
+        { searchable: false, targets: [4] },
+      ],
+    };
+  }
+}
