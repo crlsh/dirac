@@ -68,6 +68,7 @@ export class CursosViewComponent implements OnInit, OnChanges, AfterViewInit {
     this.dtOptions = {
       dom: 't<"bottom"riflp><"clear">',
       language: LanguageApp.spanish_datatables,
+      responsive: true,
       columnDefs: [
         { orderable: false, targets: [4] },
         { searchable: false, targets: [4] },
